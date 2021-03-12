@@ -13,7 +13,7 @@ class Persona{
 
         // ----- Getters -----
         string getNombre( );
-        string getId( );
+        int getId( );
         bool getTipoUniversidad( );
 };
 

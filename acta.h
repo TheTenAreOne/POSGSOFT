@@ -1,6 +1,6 @@
 #ifndef ACTA
 #define ACTA
-#include "Persona.h"
+#include "persona.h"
 #include <string>
 using std::string;
 
