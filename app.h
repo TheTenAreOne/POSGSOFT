@@ -1,8 +1,8 @@
 #ifndef APP
 #define APP
-#include <string>
-#include <Persona.h>
-#include <Acta.h>
+#include "string"
+#include "persona.h"
+#include "acta.h"
 using std::string;
 
 class App{

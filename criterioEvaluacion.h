@@ -3,12 +3,17 @@
 #include <string>
 using std::string;
 
-class CriterioEvluacion{
+//Te comiste una "a" en "Evaluacion" y también olvidaste el lowerCamelCase
+
+class criterioEvaluacion{
     private:
         string id;
         string titulo;
         string observacion;
         float porcentajePonderacion;
+
+    public:
+        criterioEvaluacion( );
 };
 
 #endif
