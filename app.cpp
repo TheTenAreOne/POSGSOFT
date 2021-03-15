@@ -24,6 +24,7 @@ bool App::verificarPersona( int idPersona, int idActa ){
             if( it->getJurado1().getId() == idPersona || it->getJurado2().getId() == idPersona || it->getDirector().getId() == idPersona || it->getCoDirector().getId() ){
                 return true;
             }else{
+                cout << "Usuario[" << idPersona << "] no hace parte del acta." << endl;
                 return false;
             }
         }
@@ -32,9 +33,18 @@ bool App::verificarPersona( int idPersona, int idActa ){
     return false;
 }
 
-void App::modificarObservacionActa( ){}
+void App::agregarObservacion( int criterio ){
 
-void App::modificarCalificacionActa( ){}
+}
+void App::borrarObservacion( int criterio ){
+
+}
+void App::agregarCalificacion( int criterio ){
+
+}
+void App::borrarCalificacion( int criterio ){
+
+}
 
 //Identifica el rol de persona con idPersona en el acta  con idActa
 //1: jurado1, 2: jurado2, 3: director, 4: codirector

@@ -13,8 +13,10 @@ class App{
     public:
         App( );
         bool verificarPersona( int idPersona, int idActa );
-        void modificarObservacionActa( );
-        void modificarCalificacionActa( );
+        void agregarObservacion( int criterio );
+        void borrarObservacion( int criterio );
+        void agregarCalificacion( int criterio );
+        void borrarCalificacion( int criterio );
         int identificarRolActa( int idPersona, int idActa );
 };
 

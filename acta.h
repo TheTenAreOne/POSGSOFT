@@ -1,7 +1,9 @@
 #ifndef ACTA
 #define ACTA
 #include "persona.h"
+#include "criterioEvaluacion.h"
 #include <string>
+#include <list>
 using std::string;
 
 class Acta{
@@ -17,6 +19,7 @@ class Acta{
         Persona coDirector;
         Persona jurado1;
         Persona jurado2;
+        list <criterioEvaluacion> criteriosEvaluacion;
     public:
         Acta( );
         int getId( );
