@@ -6,6 +6,7 @@ using std::string;
 
 class Acta{
     private:
+        int id;
         string numero;
         string fecha;
         string autor;
@@ -18,6 +19,12 @@ class Acta{
         Persona jurado2;
     public:
         Acta( );
+        int getId( );
+        Persona getJurado1( );
+        Persona getJurado2( );
+        Persona getDirector( );
+        Persona getCoDirector( );
+
 };
 
 #endif
