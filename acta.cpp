@@ -23,3 +23,5 @@ Persona Acta::getCoDirector( ){
     return this->coDirector;
 }
 //Métodos pendientes por definir para acta
+
+// Comentario de prueba
