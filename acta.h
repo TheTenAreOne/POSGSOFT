@@ -20,7 +20,7 @@ class Acta{
         Persona coDirector;
         Persona jurado1;
         Persona jurado2;
-        vector<criterioEvaluacion> criteriosEvaluacion;
+        
     public:
         Acta( );
         int getId( );
@@ -28,7 +28,7 @@ class Acta{
         Persona getJurado2( );
         Persona getDirector( );
         Persona getCoDirector( );
-        vector<criterioEvaluacion>* getCriteriosEvaluacion();
+        vector<criterioEvaluacion> criteriosEvaluacion;
         // Conseguir criterios
 
 };

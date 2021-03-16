@@ -30,41 +30,32 @@ int App::verificarPersona( int idPersona, int idActa ){
     return -1;
 }
 
+// Cambia la observacion del criterio nCriterio de acta[ indexActa ] a observacion
+//indexActa : index para el vector de actas
+//nCriterio : index para el vector de criterioEvaluacion
+//observacion : observacion a agregar
 void App::agregarObservacion( int indexActa, int nCriterio, string observacion ){
 
-    this->actas[ indexActa ].getCriteriosEvaluacion( )[ nCriterio ].setObservacion( observacion );
-    
-
+    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].setObservacion( observacion );
+    cout << "Observacion agregada." << endl;
+    return;
 }
 
-void App::borrarObservacion( Acta *pActa, int criterio ){
+// Borra la observacion del criterio nCriterio de acta[ indexActa ]
+//indexActa : index para el vector de actas
+//nCriterio : index para el vector de criterioEvaluacion
+void App::borrarObservacion( int indexActa, int nCriterio ){
 
-    list <criteriosEvaluacion> :: iterator it;
-
-    if( criterio <= criteriosEvaluacion.end() || criterio => criteriosEvaluacion.begin() ){
-
-        for( it = this->criteriosEvalucion.begin(); it != criteriosEvaluacion.end(); it++ ){
-
-            if( it == criterio){
-
-                setObservacion( int criterio, string "" );
-
-            }
-
-        }
-
-    }
-    
-    else{
-
-        cout << "El numero de criterio se encuentra por fuera del rango almacenado."
-
-    }
-
+    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].setObservacion( "" );
+    cout << "Observacion borrada." << endl;
+    return;
 }
 
 // [ C1, C2, C3, C4, C5, C6, C7, C8 ]
 
+// STEWEWEEEEEEN ====================================================================== STEWEWEEEEEEN ============== BORRAME UwU
+// Por cierto, cambie el vector para que sea publico jeje
+//corregir //mira app.h ahi se ve que recibe //borra esto cuando lo arregles
 void App::agregarCalificacion( Acta *pActa, int nCriterioEvaluacion, float calificacion ){
 
     if( calificacion < 0 || calificacion > 5 ){
