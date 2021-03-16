@@ -12,12 +12,12 @@ class App{
         list <Acta> actas; //Contiene todas las actas
     public:
         App( );
-        bool verificarPersona( int idPersona, int idActa );
-        void agregarObservacion( int criterio );
-        void borrarObservacion( int criterio );
-        void agregarCalificacion( int criterio );
-        void borrarCalificacion( int criterio );
-        int identificarRolActa( int idPersona, int idActa );
+        Acta* verificarPersona( int idPersona, int idActa );
+        void agregarObservacion( Acta*, int criterio, string observacion);
+        void borrarObservacion( Acta*, int criterio );
+        void agregarCalificacion( Acta*, int nCalificacion, float calificacion );
+        void borrarCalificacion( Acta*, int nCalificacion, float calificacion );
+        int identificarRolActa( int idPersona, int idActa);
 };
 
 #endif
