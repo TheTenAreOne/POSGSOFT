@@ -10,10 +10,13 @@ class criterioEvaluacion{
         string id;
         string titulo;
         string observacion;
+        float calificacion;
         float porcentajePonderacion;
 
     public:
         criterioEvaluacion( );
+        void setObservacion(string observacion)
+        void setCalificacion(float calificacion)
 };
 
 #endif

@@ -19,7 +19,8 @@ class Acta{
         Persona coDirector;
         Persona jurado1;
         Persona jurado2;
-        list <criterioEvaluacion> criteriosEvaluacion;
+        list <criteriosEvaluacion> criteriosEvaluacion;
+        list <calificaciones> calificaciones;
     public:
         Acta( );
         int getId( );
@@ -27,6 +28,10 @@ class Acta{
         Persona getJurado2( );
         Persona getDirector( );
         Persona getCoDirector( );
+        criteriosEvaluacion* getCriteriosEvaluacion
+
+
+        // Conseguir criterios
 
 };
 

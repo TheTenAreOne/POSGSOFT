@@ -2,4 +2,14 @@
 
 criterioEvaluacion::criterioEvaluacion(){}
 
-//Métodos pendientes por definir para criterioEvaluacion
+criterioEvaluacion::setObservacion(string observacion){
+
+    this->observacion = observacion;
+
+}
+
+criterioEvaluacion::setCalificacion(float calificacion){
+
+    this->calificacion = calificacion;
+
+}
