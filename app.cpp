@@ -4,6 +4,7 @@
 #include "persona.h"
 #include "criterioEvaluacion.h"
 using std::cout;
+using std::string;
 using std::endl;
 
 enum roles{
@@ -15,50 +16,24 @@ App::App(){}
 //Métodos App
 
 //Verifica que la persona con idPersona haga parte del acta (ya sea director o jurado)
-Acta* App::verificarPersona( int idPersona, int idActa ){
-    
-    list <Acta> :: iterator it;
-
-    //itera la lista de actas para encontrar el acta
-    for( it = this->actas.begin(); it != this->actas.end(); it++ ){
-
-        if( it->getId() == idActa ){
-            if( it->getJurado1().getId() == idPersona || it->getJurado2().getId() == idPersona || it->getDirector().getId() == idPersona || it->getCoDirector().getId() ){
-                return &it;
-            }else{
-                cout << "Usuario[" << idPersona << "] no hace parte del acta." << endl;
-                return null;
-            }
+int App::verificarPersona( int idPersona, int idActa ){
+    int i;
+    for( i = 0; i < this->actas.size(); i++ ){
+        if( this->actas[i].getJurado1().getId() == idPersona || this->actas[i].getJurado2().getId() == idPersona || this->actas[i].getDirector().getId() == idPersona || this->actas[i].getCoDirector().getId() == idPersona){
+            return i;
+        }else{
+            cout << "El usuario [" << idPersona << "] no hace parte del acta." << endl;
+            return -1;
         }
     }
-
-    cout << "Acta[" << idActa << "] no encontrada." << endl;
-    return null;
+    cout << "Acta [" << idActa << "] no fue encontrada." << endl;
+    return -1;
 }
 
-void App::agregarObservacion( Acta *pActa, int criterio, string observacion ){
+void App::agregarObservacion( int indexActa, int nCriterio, string observacion ){
 
-    list <criteriosEvaluacion> :: iterator it;
-
-    if( criterio <= criteriosEvaluacion.end() || criterio => criteriosEvaluacion.begin() ){
-
-        for( it = this->criteriosEvalucion.begin(); it != criteriosEvaluacion.end(); it++ ){
-
-            if( it == criterio){
-
-                setObservacion( int criterio, string observacion );
-
-            }
-
-        }
-
-    }
+    this->actas[ indexActa ].getCriteriosEvaluacion( )[ nCriterio ].setObservacion( observacion );
     
-    else{
-
-        cout << "El numero de criterio se encuentra por fuera del rango almacenado."
-
-    }
 
 }
 
@@ -87,13 +62,21 @@ void App::borrarObservacion( Acta *pActa, int criterio ){
     }
 
 }
-void App::agregarCalificacion( Acta *pActa, int nCalificacion ){
 
-    list <calificaciones> :: iterator it;
+// [ C1, C2, C3, C4, C5, C6, C7, C8 ]
 
-    if( nCalificacion <= calificaciones.end() || nCalificacion => calificaciones.begin() ){
+void App::agregarCalificacion( Acta *pActa, int nCriterioEvaluacion, float calificacion ){
 
-        for( it = this->calificaciones.begin(); it != calificaciones.end(); it++ ){
+    if( calificacion < 0 || calificacion > 5 ){
+        cout << "Calificacion invalida" << endl;
+        return;
+    }
+
+    list <criterioEvaluacion> :: iterator it; 
+
+    if( nCalificacion <= pActa->get.end() || nCalificacion => nCriterioEvaluacion.begin() ){
+
+        for( it = pActa->calificaciones.begin(); it != pActa->calificaciones.end(); it++ ){
 
             if( it == nCalificacion){
 
@@ -140,22 +123,19 @@ void App::borrarCalificacion( Acta *pActa){
 
 //Identifica el rol de persona con idPersona en el acta  con idActa
 //1: jurado1, 2: jurado2, 3: director, 4: codirector
+// idPersona es el id de la persona que se desea saber el rol
+// indexActa es el index en el vector acta correspondiente al acta a verificar
 //se usan enums 
-int App::identificarRolActa( int idPersona, int idActa ){
-    list <Acta> :: iterator it;
+int App::identificarRolActa( int idPersona, int indexActa ){
 
-    for( it = this->actas.begin(); it != this->actas.end(); it++ ){
-        if( it->getId() == idActa ){
-            if( it->getJurado1().getId() == idPersona ){
-                return JURADO1;
-            }else if( it->getJurado2().getId() == idPersona ){
-                return JURADO2;
-            }else if( it->getDirector().getId() == idPersona ){
-                return DIRECTOR;
-            }else{
-                return CODIRECTOR;
-            }
-        }
+    if( this->actas[ indexActa ].getJurado1().getId() == idPersona ){
+        return JURADO1;
+    }else if( this->actas[ indexActa ].getJurado2().getId() == idPersona ){
+        return JURADO2;
+    }else if( this->actas[ indexActa ].getDirector().getId() == idPersona ){
+        return DIRECTOR;
+    }else{
+        return CODIRECTOR;
     }
 
     return -1;

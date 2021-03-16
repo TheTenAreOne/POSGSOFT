@@ -15,8 +15,8 @@ class criterioEvaluacion{
 
     public:
         criterioEvaluacion( );
-        void setObservacion(string observacion)
-        void setCalificacion(float calificacion)
+        void setObservacion(string observacion);
+        void setCalificacion(float calificacion);
 };
 
 #endif

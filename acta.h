@@ -3,8 +3,9 @@
 #include "persona.h"
 #include "criterioEvaluacion.h"
 #include <string>
-#include <list>
+#include <vector>
 using std::string;
+using std::vector;
 
 class Acta{
     private:
@@ -19,8 +20,7 @@ class Acta{
         Persona coDirector;
         Persona jurado1;
         Persona jurado2;
-        list <criteriosEvaluacion> criteriosEvaluacion;
-        list <calificaciones> calificaciones;
+        vector<criterioEvaluacion> criteriosEvaluacion;
     public:
         Acta( );
         int getId( );
@@ -28,9 +28,7 @@ class Acta{
         Persona getJurado2( );
         Persona getDirector( );
         Persona getCoDirector( );
-        criteriosEvaluacion* getCriteriosEvaluacion
-
-
+        vector<criterioEvaluacion>* getCriteriosEvaluacion();
         // Conseguir criterios
 
 };
