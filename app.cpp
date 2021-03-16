@@ -4,16 +4,41 @@
 #include "persona.h"
 #include "criterioEvaluacion.h"
 using std::cout;
+using std::cin;
 using std::string;
 using std::endl;
 
 enum roles{
     JURADO1, JURADO2, DIRECTOR, CODIRECTOR
 };
-
+enum tipoUniversidad{
+    INTERNO = true, EXTERNO = false
+};
 App::App(){}
 
 //Métodos App
+
+
+
+//Agrega una persona
+void App::agregarPersona( ){
+    string nombre;
+    bool tipoUniversidad;
+
+    cout << "Nombre: " << endl;
+    cin >> nombre;
+
+    cout << "Interno o externo a la universidad: " << endl;
+    cout << "[1:Interno]|[2:Externo]" << endl;
+    cin >> tipoUniversidad;
+
+    Persona newPersona( nombre, idPersonas++, tipoUniversidad );
+    this->personas.push_back( newPersona );
+
+    cout << nombre << "[" << tipoUniversidad << "] agregado." << endl;
+    
+    return;
+}
 
 //Verifica que la persona con idPersona haga parte del acta (ya sea director o jurado)
 int App::verificarPersona( int idPersona, int idActa ){

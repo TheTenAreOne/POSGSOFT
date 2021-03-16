@@ -10,7 +10,7 @@ class Persona{
         bool tipoUniversidad;
     public:
         Persona( );
-
+        Persona( string nombre, int id, bool tipoUniversidad );
         // ----- Getters -----
         string getNombre( );
         int getId( );

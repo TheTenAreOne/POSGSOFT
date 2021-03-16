@@ -2,6 +2,11 @@
 
 Persona::Persona(){}
 
+Persona::Persona( string nombre, int id, bool tipoUniversidad ){
+    this->nombre = nombre;
+    this->id = id;
+    this->tipoUniversidad = tipoUniversidad;
+}
 //Métodos Persona
 
 string Persona::getNombre(){
