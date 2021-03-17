@@ -83,7 +83,7 @@ void App::crearActa(){
     cout << "Jurado #2: " << endl;
     cin >> jurado2;
     
-    generarNumeroActa( periodo );
+    numero = generarNumeroActa( periodo );
     generarFecha( );
 
     Acta nuevaActa( autor, periodo, this->personas[ director ], this->personas[ codirector ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
