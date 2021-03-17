@@ -67,9 +67,11 @@ void App::crearActa(){
     cout << "Ingresar numero de persona para elegir rol: " << endl;
     cout << "Director: " << endl;
     cin >> director;
+    director--;
 
     cout << "Co director: " << endl;
     cin >> codirector;
+    codirector--;
 
     cout << "Enfasis en: " << endl;
     cin >> enfasis;
@@ -77,11 +79,16 @@ void App::crearActa(){
     cout << "Modalidad [1:Investigacion] [2:Industria]" << endl;
     cin >> modalidad;
 
+    cout << "Personas disponibles: " << endl;
+    mostrarPersonas();
+
     cout << "Jurado #1: " << endl;
     cin >> jurado1;
+    jurado1--;
 
     cout << "Jurado #2: " << endl;
     cin >> jurado2;
+    jurado2--;
     
     numero = generarNumeroActa( periodo );
     generarFecha( );
