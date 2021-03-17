@@ -40,6 +40,7 @@ class App{
         int identificarRolActa( int idPersona, int indexActa );
         void menu( );
         void trabajoDirigidos( int indexPersona );
+        void verJuradosActasRegistradas( );
 };
 
 #endif

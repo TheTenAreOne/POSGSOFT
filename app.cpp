@@ -258,4 +258,41 @@ void App::trabajoDirigidos( int indexPersona ){
         cout << "Trabajos dirigidos: " << counter << endl;
     }
     return;
+
+}
+
+//Ver la lista (sin repetidos) de todos los jurados que han participado en las actas registradas
+void App::verJuradosActasRegistradas( ){
+    int i, j;
+    vector<Persona> juradosRepetidos;
+    vector<Persona> jurados;
+    bool agregado;
+    //Agrega las personas que han sido jurados
+    for( i = 0; i < this->personas.size(); i++ ){
+        for( j = 0; j < this->actas.size(); j++ ){
+            if( this->personas[i].getId() == this->actas[j].getJurado1().getId() || this->personas[i].getId() == this->actas[j].getJurado2().getId() ){
+                juradosRepetidos.push_back( this->personas[i] );
+            }
+        }
+    }
+
+    //Crea el vector con jurados no repetidos
+    for( i = 0; i < juradosRepetidos.size(); i++ ){
+        agregado = false;
+        for( j = 0; j < jurados.size(); j++ ){
+            if( juradosRepetidos[i].getId() == jurados[j].getId() ){
+                agregado = true;
+            }
+        }
+        if( !agregado ){
+            jurados.push_back( juradosRepetidos[ i ] );
+        }
+    }
+
+    //Imprime los jurados
+    for( i = 0; i < jurados.size(); i++ ){
+        cout << jurados[i].getNombre() << endl;
+    }
+    
+    return;
 }
