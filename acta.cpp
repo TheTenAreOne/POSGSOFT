@@ -24,10 +24,29 @@ Persona Acta::getCoDirector( ){
 }
 
 //verifica si esta cerrada
-bool Acta::estadoCerrada(){
+bool Acta::estadoCerrada( ){
     return this->cerrada;
 }
 
+int Acta::getModalidad( ){
+    return this->modalidad;
+}
+
+string Acta::getAutor(){
+    return this->autor;
+}
+
+string Acta::getPeriodo(){
+    return this->periodo;
+}
+
+string Acta::getNombreTrabajo(){
+    return this->nombreTrabajo;
+}
+
+string Acta::getFecha(){
+    return this->fecha;
+}
 //Métodos pendientes por definir para acta
 
 // Comentario de prueba

@@ -28,6 +28,7 @@ class App{
         void crearActa( );
         void cerrarActa( );
         void mostrarActasPorModalidad( int modalidad );
+        void imprimirActa( int indexActa );
         void agregarPersona( );
         void mostrarPersonas( );
         string generarNumeroActa( string periodo );

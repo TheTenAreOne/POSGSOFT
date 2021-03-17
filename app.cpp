@@ -213,4 +213,28 @@ int App::identificarRolActa( int idPersona, int indexActa ){
 }
 
 //Muestra las actas de la modalidad recibida
-void App::mostrarActasPorModalidad( int modalidad )
+void App::mostrarActasPorModalidad( int modalidad ){
+    int i;
+    cout << "Modalidad : ";
+    if( modalidad == INVESTIGACION ){
+        cout << "Investigacion" << endl;
+    }else{
+        cout << "Industria" << endl;
+    }
+
+    for(i = 0; i < this->actas.size(); i++ ){
+        if( this->actas[i].getModalidad() == modalidad ){
+            imprimirActa( i );
+        }
+    }
+    return;
+}
+
+//falta terminar
+void App::imprimirActa( int indexActa ){
+    
+    cout << this->actas[ indexActa ].getNombreTrabajo() << endl;
+    cout << this->actas[ indexActa ].getAutor() << endl;
+
+    return;
+}
