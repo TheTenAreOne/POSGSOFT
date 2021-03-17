@@ -7,6 +7,16 @@
 using std::string;
 using std::vector;
 
+enum roles{
+    JURADO1, JURADO2, DIRECTOR, CODIRECTOR
+};
+enum tipoUniversidad{
+    INTERNO = true, EXTERNO = false
+};
+enum modalidad{
+    INVESTIGACION = 1, INDUSTRIA = 2
+};
+
 class App{
     private:
         vector<Acta> actas; //Contiene todas las actas
@@ -17,6 +27,7 @@ class App{
         App( );
         void crearActa( );
         void cerrarActa( );
+        void mostrarActasPorModalidad( int modalidad );
         void agregarPersona( );
         void mostrarPersonas( );
         string generarNumeroActa( string periodo );

@@ -8,12 +8,6 @@ using std::cin;
 using std::string;
 using std::endl;
 
-enum roles{
-    JURADO1, JURADO2, DIRECTOR, CODIRECTOR
-};
-enum tipoUniversidad{
-    INTERNO = true, EXTERNO = false
-};
 App::App(){}
 
 //Métodos App
@@ -95,7 +89,7 @@ void App::crearActa(){
     Acta nuevaActa( autor, periodo, this->personas[ director ], this->personas[ codirector ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
     this->actas.push_back( nuevaActa );
     cout << "Acta creada" << endl;
-    
+
     return;
 }
 
@@ -217,3 +211,6 @@ int App::identificarRolActa( int idPersona, int indexActa ){
 
     return -1;
 }
+
+//Muestra las actas de la modalidad recibida
+void App::mostrarActasPorModalidad( int modalidad )
