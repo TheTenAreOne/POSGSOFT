@@ -29,7 +29,6 @@ class Acta{
     public:
         vector<criterioEvaluacion> criteriosEvaluacion;
         Acta( string autor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha );
-        // Conseguir criterios
 
         //=======Getters======
         int getId( );

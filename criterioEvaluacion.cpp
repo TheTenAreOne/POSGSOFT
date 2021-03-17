@@ -2,10 +2,14 @@
 
 criterioEvaluacion::criterioEvaluacion(){}
 
-void criterioEvaluacion::setObservacion( string observacion ){
+void criterioEvaluacion::agregarObservacion( string observacion ){
 
-    this->observacion = observacion;
+    this->observacion += observacion;
 
+}
+void criterioEvaluacion::borrarObservacion( ){
+
+    this->observacion = "";
 }
 
 void criterioEvaluacion::setCalificacion( float calificacion ){

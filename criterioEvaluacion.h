@@ -13,7 +13,8 @@ class criterioEvaluacion{
 
     public:
         criterioEvaluacion( );
-        void setObservacion(string observacion);
+        void agregarObservacion(string observacion);
+        void borrarObservacion();
         void setCalificacion(float calificacion);
 };
 
