@@ -1,7 +1,7 @@
 #include <iostream>
 #include "acta.h"
 
-Acta::Acta(){}
+Acta::Acta( string numero, string fecha, string autor, string nombreTrabajo, int tipoTrabajo, string periodo, Persona director, Persona coDirector, Persona jurado1, Persona jurado2 ){}
 
 int Acta::getId( ){
     return this->id;
@@ -21,6 +21,11 @@ Persona Acta::getDirector( ){
 
 Persona Acta::getCoDirector( ){
     return this->coDirector;
+}
+
+//verifica si esta cerrada
+bool Acta::estadoCerrada(){
+    return this->cerrada;
 }
 
 //Métodos pendientes por definir para acta

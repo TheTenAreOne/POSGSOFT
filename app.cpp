@@ -18,7 +18,92 @@ App::App(){}
 
 //Métodos App
 
+void App::menu( ){
 
+    int opc;
+
+    do{
+        cout << "<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << " 1 : Agregar persona" << endl;
+        cout << " 2 : Crear acta" << endl;
+        cout << " 3 : Agregar observacion" << endl;
+        cout << " 4 : Cerrar acta" << endl;
+        cout << " 5 : Salir" << endl;
+        cin >> opc;
+    }while( opc != 5 );
+
+    switch ( opc )
+    {
+    case 1:
+        agregarPersona();
+        break;
+    case 2:
+        crearActa();
+        break;
+    case 3:
+
+        break;
+    case 4:
+        break;
+    default:
+        break;
+    }
+
+    return;
+}
+//Crear un acta
+void App::crearActa(){
+    string nombreDelTrabajo, autor, periodo, numero;
+    int director, codirector, jurado1, jurado2;
+    cout << "<>===<>===<>===<>===<>===<>===<>" << endl;
+    cout << "             Creando acta" << endl;
+
+    cout << "Nombre del trabajo: " << endl;
+    cin >> nombreDelTrabajo;
+
+    cout << "Autor: " << endl;
+    cin >> autor;
+
+    cout << "Periodo: " << endl;
+    cin >> periodo;
+
+    cout << "Personas disponibles: " << endl;
+    mostrarPersonas();
+
+    cout << "Ingresar numero de persona para elegir rol: " << endl;
+    cout << "Director: " << endl;
+    cin >> director;
+
+    cout << "Co director: " << endl;
+    cin >> codirector;
+
+    cout << "Jurado #1: " << endl;
+    cin >> jurado1;
+
+    cout << "Jurado #2: " << endl;
+    cin >> jurado2;
+    
+    generarNumeroActa( periodo );
+    generarFecha( );
+    Acta nuevaActa( numero, fecha, string autor, string nombreTrabajo, int tipoTrabajo, string periodo, Persona director, Persona coDirector, Persona jurado1, Persona jurado2 );
+
+    return;
+}
+
+string App::generarNumeroActa( string periodo){
+    string numero;
+    numero = this->idActas++ + "-" + periodo;
+    return numero;
+}
+void App::mostrarPersonas(){
+    int i;
+    int indexPersonas;
+    cout << "[" << 0 << "]"<< "N/A" << endl;
+    for( i = 0; i < personas.size(); i++ ){
+        cout <<"[" << i+1 << "] " << personas[ i ].getNombre();
+    }
+    return;
+}
 
 //Agrega una persona
 void App::agregarPersona( ){

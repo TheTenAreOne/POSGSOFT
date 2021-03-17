@@ -11,18 +11,22 @@ class App{
     private:
         vector<Acta> actas; //Contiene todas las actas
         vector<Persona> personas; //contiene todas las personas
-        int idPersonas = 0;
+        int idActas;
+        int idPersonas;
     public:
         App( );
         void crearActa( );
         void cerrarActa( );
         void agregarPersona( );
+        void mostrarPersonas( );
+        string generarNumeroActa( string periodo );
         int verificarPersona( int idPersona, int idActa );
         void agregarObservacion( int indexActa, int nCriterio, string observacion);
         void borrarObservacion( int indexActa, int nCriterio );
         void agregarCalificacion( int indexActa , int nCriterio, float calificacion );
         void borrarCalificacion( int indexActa , int nCriterio );
         int identificarRolActa( int idPersona, int indexActa );
+        void menu( );
 };
 
 #endif
