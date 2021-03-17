@@ -20,8 +20,8 @@ class App{
         int verificarPersona( int idPersona, int idActa );
         void agregarObservacion( int indexActa, int nCriterio, string observacion);
         void borrarObservacion( int indexActa, int nCriterio );
-        void agregarCalificacion( int indexActa , int nCalificacion, float calificacion );
-        void borrarCalificacion( int indexActa , int nCalificacion );
+        void agregarCalificacion( int indexActa , int nCriterio, float calificacion );
+        void borrarCalificacion( int indexActa , int nCriterio );
         int identificarRolActa( int idPersona, int indexActa );
 };
 

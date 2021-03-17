@@ -23,9 +23,6 @@ Persona Acta::getCoDirector( ){
     return this->coDirector;
 }
 
-vector<criterioEvaluacion>* Acta::getCriteriosEvaluacion( ){
-    return &criteriosEvaluacion;
-}
 //Métodos pendientes por definir para acta
 
 // Comentario de prueba

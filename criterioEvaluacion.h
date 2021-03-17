@@ -3,8 +3,6 @@
 #include <string>
 using std::string;
 
-//Te comiste una "a" en "Evaluacion" y también olvidaste el lowerCamelCase
-
 class criterioEvaluacion{
     private:
         string id;

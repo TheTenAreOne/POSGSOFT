@@ -78,63 +78,29 @@ void App::borrarObservacion( int indexActa, int nCriterio ){
 
 // [ C1, C2, C3, C4, C5, C6, C7, C8 ]
 
-// STEWEWEEEEEEN ====================================================================== STEWEWEEEEEEN ============== BORRAME UwU
-// Por cierto, cambie el vector para que sea publico jeje
-//corregir //mira app.h ahi se ve que recibe //borra esto cuando lo arregles
-void App::agregarCalificacion( Acta *pActa, int nCriterioEvaluacion, float calificacion ){
 
-    if( calificacion < 0 || calificacion > 5 ){
-        cout << "Calificacion invalida" << endl;
-        return;
-    }
 
-    list <criterioEvaluacion> :: iterator it; 
+// Cambia la calificacion de la calificacion nCriterio de acta[ indexActa ] a la calificacion ingresada
+//indexActa : index para el vector de actas
+//nCriterio : index para el vector de criterioEvaluacion
+//calificacion : calificacion a ingresar
 
-    if( nCalificacion <= pActa->get.end() || nCalificacion => nCriterioEvaluacion.begin() ){
+void App::agregarCalificacion( int indexActa, int nCriterio, float calificacion ){
 
-        for( it = pActa->calificaciones.begin(); it != pActa->calificaciones.end(); it++ ){
-
-            if( it == nCalificacion){
-
-                setCalificacion( float calificacion );
-
-            }
-
-        }
-
-    }
-    
-    else{
-
-        cout << "El numero de criterio se encuentra por fuera del rango almacenado."
-
-    }
-
+    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].setCalificacion( calificacion );
+    cout << "Calificacion agregada." << endl;
+    return;
 }
-void App::borrarCalificacion( Acta *pActa){
 
-    list <calificaciones> :: iterator it;
+// Borra la calificacion del criterio nCriterio de acta[ indexActa ]
+//indexActa : index para el vector de actas
+//nCalificacion : index para el vector de criterioEvaluacion
 
-    if( nCalificacion <= calificaciones.end() || nCalificacion => calificaciones.begin() ){
+void App::borrarCalificacion( int indexActa, int nCriterio ){
 
-        for( it = this->calificaciones.begin(); it != calificaciones.end(); it++ ){
-
-            if( it == nCalificacion){
-
-                setCalificacion( float 0.0 );
-
-            }
-
-        }
-
-    }
-    
-    else{
-
-        cout << "El numero de criterio se encuentra por fuera del rango almacenado."
-
-    }
-
+    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].setCalificacion( 0.0 );
+    cout << "Calificacion borrada." << endl;
+    return;
 }
 
 //Identifica el rol de persona con idPersona en el acta  con idActa
@@ -142,6 +108,7 @@ void App::borrarCalificacion( Acta *pActa){
 // idPersona es el id de la persona que se desea saber el rol
 // indexActa es el index en el vector acta correspondiente al acta a verificar
 //se usan enums 
+
 int App::identificarRolActa( int idPersona, int indexActa ){
 
     if( this->actas[ indexActa ].getJurado1().getId() == idPersona ){
