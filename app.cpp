@@ -89,7 +89,7 @@ void App::crearActa(){
     cout << "Jurado #2: " << endl;
     cin >> jurado2;
     jurado2--;
-    
+
     numero = generarNumeroActa( periodo );
     generarFecha( );
 
@@ -156,7 +156,7 @@ int App::verificarPersona( int idPersona, int idActa ){
 //observacion : observacion a agregar
 void App::agregarObservacion( int indexActa, int nCriterio, string observacion ){
 
-    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].setObservacion( observacion );
+    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].agregarObservacion( observacion );
     cout << "Observacion agregada." << endl;
     return;
 }
@@ -166,7 +166,7 @@ void App::agregarObservacion( int indexActa, int nCriterio, string observacion )
 //nCriterio : index para el vector de criterioEvaluacion
 void App::borrarObservacion( int indexActa, int nCriterio ){
 
-    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].setObservacion( "" );
+    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].borrarObservacion( );
     cout << "Observacion borrada." << endl;
     return;
 }
@@ -243,5 +243,19 @@ void App::imprimirActa( int indexActa ){
     cout << this->actas[ indexActa ].getNombreTrabajo() << endl;
     cout << this->actas[ indexActa ].getAutor() << endl;
 
+    return;
+}
+
+//Consultar cuántos trabajos de grado ha dirigido un profesor dado. 
+void App::trabajoDirigidos( int indexPersona ){
+    int idPersona = this->personas[ indexPersona ].getId();
+    int i, counter = 0;
+    for( i = 0; i < this->actas.size(); i++ ){
+        if( this->actas[i].getDirector().getId() == idPersona ){
+            counter++;
+            cout << this->actas[i].getNombreTrabajo() << " por " << this->actas[i].getAutor() << endl;
+        }
+        cout << "Trabajos dirigidos: " << counter << endl;
+    }
     return;
 }

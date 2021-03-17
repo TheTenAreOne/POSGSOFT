@@ -39,6 +39,7 @@ class App{
         void borrarCalificacion( int indexActa , int nCriterio );
         int identificarRolActa( int idPersona, int indexActa );
         void menu( );
+        void trabajoDirigidos( int indexPersona );
 };
 
 #endif
