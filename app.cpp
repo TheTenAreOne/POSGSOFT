@@ -53,8 +53,8 @@ void App::menu( ){
 }
 //Crear un acta
 void App::crearActa(){
-    string nombreDelTrabajo, autor, periodo, numero;
-    int director, codirector, jurado1, jurado2;
+    string nombreDelTrabajo, autor, periodo, numero, enfasis, fecha;
+    int director, codirector, jurado1, jurado2, modalidad;
     cout << "<>===<>===<>===<>===<>===<>===<>" << endl;
     cout << "             Creando acta" << endl;
 
@@ -77,6 +77,12 @@ void App::crearActa(){
     cout << "Co director: " << endl;
     cin >> codirector;
 
+    cout << "Enfasis en: " << endl;
+    cin >> enfasis;
+
+    cout << "Modalidad [1:Investigacion] [2:Industria]" << endl;
+    cin >> modalidad;
+
     cout << "Jurado #1: " << endl;
     cin >> jurado1;
 
@@ -85,8 +91,11 @@ void App::crearActa(){
     
     generarNumeroActa( periodo );
     generarFecha( );
-    Acta nuevaActa( numero, fecha, string autor, string nombreTrabajo, int tipoTrabajo, string periodo, Persona director, Persona coDirector, Persona jurado1, Persona jurado2 );
 
+    Acta nuevaActa( autor, periodo, this->personas[ director ], this->personas[ codirector ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
+    this->actas.push_back( nuevaActa );
+    cout << "Acta creada" << endl;
+    
     return;
 }
 

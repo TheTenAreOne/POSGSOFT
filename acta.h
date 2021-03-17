@@ -17,17 +17,18 @@ class Acta{
         string fecha;
         string autor;
         string nombreTrabajo;
-        int tipoTrabajo;
+        int modalidad;
         string periodo;
         Persona director;
         Persona coDirector;
+        string enfasis;
         Persona jurado1;
         Persona jurado2;
         bool cerrada;
         
     public:
         vector<criterioEvaluacion> criteriosEvaluacion;
-        Acta( string numero, string fecha, string autor, string nombreTrabajo, int tipoTrabajo, string periodo, Persona director, Persona coDirector, Persona jurado1, Persona jurado2);
+        Acta( string autor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha );
         int getId( );
         Persona getJurado1( );
         Persona getJurado2( );

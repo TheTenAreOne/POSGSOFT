@@ -1,7 +1,7 @@
 #include <iostream>
 #include "acta.h"
 
-Acta::Acta( string numero, string fecha, string autor, string nombreTrabajo, int tipoTrabajo, string periodo, Persona director, Persona coDirector, Persona jurado1, Persona jurado2 ){}
+Acta::Acta( string autor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha ){}
 
 int Acta::getId( ){
     return this->id;
