@@ -6,7 +6,7 @@
 #include <vector>
 using std::string;
 using std::vector;
-enums{
+enum{
     CERRADA = true, ABIERTA = false
 };
 

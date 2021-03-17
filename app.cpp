@@ -45,6 +45,74 @@ void App::menu( ){
 
     return;
 }
+
+string App::generarFecha(){
+
+    string fecha;
+
+    string mes;
+
+    time_t now = time(0);
+
+    tm *ltm = localtime(&now);
+
+    if(1 + ltm->tm_mon == 1){
+        mes = "enero";
+    }
+
+    else if(1 + ltm->tm_mon == 2){
+        mes = "febrero";
+    }
+
+    else if(1 + ltm->tm_mon == 3){
+        mes = "marzo";
+    }
+
+    else if(1 + ltm->tm_mon == 4){
+        mes = "abril";
+    }
+
+    else if(1 + ltm->tm_mon == 5){
+        mes = "mayo";
+    }
+
+    else if(1 + ltm->tm_mon == 6){
+        mes = "junio";
+    }
+
+    else if(1 + ltm->tm_mon == 7){
+        mes = "julio";
+    }
+
+    else if(1 + ltm->tm_mon == 8){
+        mes = "agosto";
+    }
+
+    else if(1 + ltm->tm_mon == 9){
+        mes = "septiembre";
+    }
+
+    else if(1 + ltm->tm_mon == 10){
+        mes = "octubre";
+    }
+
+    else if(1 + ltm->tm_mon == 11){
+        mes = "noviembre";
+    }
+
+    else if(1 + ltm->tm_mon == 12){
+        mes = "diciembre";
+    }
+
+    string dia = std::to_string(ltm->tm_mday);
+
+    string anio = std::to_string(1900 + ltm->tm_year);
+
+    fecha = mes + " " + dia + " de " + anio;
+
+    return fecha;
+
+}
 //Crear un acta
 void App::crearActa(){
     string nombreDelTrabajo, autor, periodo, numero, enfasis, fecha;

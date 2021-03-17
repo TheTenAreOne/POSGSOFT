@@ -41,6 +41,7 @@ class App{
         void menu( );
         void trabajoDirigidos( int indexPersona );
         void verJuradosActasRegistradas( );
+        std::string generarFecha( );
 };
 
 #endif
