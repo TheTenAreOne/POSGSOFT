@@ -15,7 +15,10 @@ class criterioEvaluacion{
         criterioEvaluacion( );
         void agregarObservacion(string observacion);
         void borrarObservacion();
-        void setCalificacion(float calificacion);
+        void agregarCalificacion(float calificacion);
+        void borrarCalificacion();
+        string getCriterioEvaluacion();
+        
 };
 
 #endif

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "acta.h"
+#include "criterioEvaluacion.h"
 
 Acta::Acta( string autor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha ){}
 

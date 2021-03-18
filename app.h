@@ -3,6 +3,7 @@
 #include "string"
 #include "persona.h"
 #include "acta.h"
+#include "criterioEvaluacion.h"
 #include <vector>
 using std::string;
 using std::vector;

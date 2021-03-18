@@ -250,7 +250,7 @@ void App::borrarObservacion( int indexActa, int nCriterio ){
 
 void App::agregarCalificacion( int indexActa, int nCriterio, float calificacion ){
 
-    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].setCalificacion( calificacion );
+    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].agregarCalificacion( calificacion );
     cout << "Calificacion agregada." << endl;
     return;
 }
@@ -261,7 +261,7 @@ void App::agregarCalificacion( int indexActa, int nCriterio, float calificacion 
 
 void App::borrarCalificacion( int indexActa, int nCriterio ){
 
-    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].setCalificacion( 0.0 );
+    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].borrarCalificacion();
     cout << "Calificacion borrada." << endl;
     return;
 }
@@ -309,7 +309,20 @@ void App::mostrarActasPorModalidad( int modalidad ){
 void App::imprimirActa( int indexActa ){
     
     cout << this->actas[ indexActa ].getNombreTrabajo() << endl;
-    cout << this->actas[ indexActa ].getAutor() << endl;
+    cout << this->actas[ indexActa ].getFecha() << endl;
+    cout << this->actas[ indexActa ].getPeriodo() << endl;
+    cout << this->actas[ indexActa ].getAutor() << endl;    
+    cout << this->actas[ indexActa ].getModalidad() << endl;
+    cout << this->actas[ indexActa ].getNumero() << endl;
+    cout << this->actas[ indexActa ].getId() << endl;
+    cout << this->actas[ indexActa ].getJurado1().getNombre() << endl;
+    cout << this->actas[ indexActa ].getJurado2().getNombre() << endl;
+    cout << this->actas[ indexActa ].getDirector().getNombre() << endl;
+    cout << this->actas[ indexActa ].getCoDirector().getNombre() << endl;
+    cout << this->actas[ indexActa ].estadoCerrada() << endl;
+    
+    cout << this->actas[ indexActa ].criteriosEvaluacion[1].getCriterioEvaluacion() << endl;
+    cout << "hola" << endl;
 
     return;
 }

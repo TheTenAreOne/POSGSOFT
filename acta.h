@@ -44,8 +44,6 @@ class Acta{
         string getNombreTrabajo();
         string getPeriodo();
 
-
-
 };
 
 #endif
