@@ -412,12 +412,7 @@ void App::verJuradosActasRegistradas( ){
 
 
 
-//DANIEL LEEEME
-
-//DANIEL LEEME
-
-// PQ HAY DOS DE ESTAS FUNCIONES, PQ UNA ES AC Y LA OTRA NO, QUE HACEN
-
+//Muestra todas las actas en el vector actas
 void App::mostrarTodasActas( ){
     int i;
     cout << "====Todas las actas====" << endl;
@@ -428,6 +423,8 @@ void App::mostrarTodasActas( ){
     return;
 }
 
+//Muestra actas todas las abiertas o todas las actas cerradas
+//bool cerrada: cuando True muestra las cerradas, cuando False muestra las Abiertas
 void App::mostrarActasAC( bool cerrada ){
     int i;
     cout << "====Todas las actas====" << endl;
