@@ -43,6 +43,9 @@ class App{
         void trabajoDirigidos( int indexPersona );
         void verJuradosActasRegistradas( );
         std::string generarFecha( );
+        void mostrarTodasActas( );
+        void mostrarActasAC( bool cerrada );
+        bool borrarActa( int indexActas ); 
 };
 
 #endif

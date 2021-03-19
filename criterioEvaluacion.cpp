@@ -1,7 +1,13 @@
 #include "criterioEvaluacion.h"
 #include "string"
 
-criterioEvaluacion::criterioEvaluacion(){}
+criterioEvaluacion::criterioEvaluacion( string id, string titulo, string observacion, float calificacion, float porcentajePonderacion ){
+        this->id = id;
+        this->titulo = titulo;
+        this->observacion = observacion;
+        this->calificacion = calificacion;
+        this->porcentajePonderacion = porcentajePonderacion;
+}
 
 void criterioEvaluacion::agregarObservacion( string observacion ){
 

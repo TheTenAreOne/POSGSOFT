@@ -12,7 +12,7 @@ class criterioEvaluacion{
         float porcentajePonderacion;
 
     public:
-        criterioEvaluacion( );
+        criterioEvaluacion( string id, string titulo, string observacion, float calificacion, float porcentajePonderacion );
         void agregarObservacion(string observacion);
         void borrarObservacion();
         void agregarCalificacion(float calificacion);

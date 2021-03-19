@@ -24,6 +24,7 @@ class Acta{
         string enfasis;
         Persona jurado1;
         Persona jurado2;
+        int nota;
         bool cerrada;
         
     public:
@@ -43,6 +44,7 @@ class Acta{
         string getAutor();
         string getNombreTrabajo();
         string getPeriodo();
+        int getNota();
 
 };
 

@@ -3,6 +3,7 @@
 #include "acta.h"
 #include "persona.h"
 #include "criterioEvaluacion.h"
+#include <ctime>
 using std::cout;
 using std::cin;
 using std::string;
@@ -325,7 +326,7 @@ void App::imprimirActa( int indexActa ){
 
 // STEVEN NO ENFERMO LEEME
     
-"""
+/*
     //a;adir for para que todos los index de criteriosEvaluacion se impriman // Trabajo pausado debido a problemas de salud // 
 
     Terminar imprimir acta, borrar calificacion, 
@@ -340,7 +341,7 @@ final de acta.cpp revisar
 jurado a acta rev9sar
 
 
-"""
+*/
     cout << this->actas[ indexActa ].criteriosEvaluacion[1].getCriterioEvaluacion() << endl;
     cout << "hola" << endl;
 
@@ -396,4 +397,42 @@ void App::verJuradosActasRegistradas( ){
     }
     
     return;
+}
+
+//7.	Permita lista todas las actas que se encuentran almacenadas en el sistema: 
+//   Mostrará el número del acta, la fecha, el nombre del estudiante, el estado, la nota si la tiene y el estado. 
+void App::mostrarTodasActas( ){
+    int i;
+    cout << "====Todas las actas====" << endl;
+    for( i = 0; i < this->actas.size(); i++ ){
+        cout << this->actas[i].getNumero() << "-" << this->actas[i].getFecha() << "-" << this->actas[i].getAutor() << "-" << this->actas[i].getNota() << "-" << this->actas[i].estadoCerrada() << endl;
+    }
+    cout << "=======================" << endl;
+    return;
+}
+
+// 8.	Permita listar únicamente las actas abiertas / cerradas.  
+//Misma información del campo anterior pero solo para las actas en el estado solicitado.
+
+void App::mostrarActasAC( bool cerrada ){
+    int i;
+    cout << "====Todas las actas====" << endl;
+    for( i = 0; i < this->actas.size(); i++ ){
+        if( this->actas[i].estadoCerrada() == cerrada ){
+            cout << this->actas[i].getNumero() << "-" << this->actas[i].getFecha() << "-" << this->actas[i].getAutor() << "-" << this->actas[i].getNota() << "-" << this->actas[i].estadoCerrada() << endl;
+        }else if( this->actas[i].estadoCerrada() == !cerrada ){
+            cout << this->actas[i].getNumero() << "-" << this->actas[i].getFecha() << "-" << this->actas[i].getAutor() << "-" << this->actas[i].getNota() << "-" << this->actas[i].estadoCerrada() << endl;
+        }
+    }
+    cout << "=======================" << endl;
+    return;
+}
+
+//10.	Eliminar un acta de grado ( podrán ser eliminadas únicamente las actas no cerradas)
+bool App::borrarActa( int indexActas ){
+
+    if( this->actas[indexActas].estadoCerrada() == ABIERTA ){
+        this->actas.erase( this->actas.begin() + indexActas );
+    }
+    return false;
 }
