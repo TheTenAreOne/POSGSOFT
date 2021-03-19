@@ -320,7 +320,27 @@ void App::imprimirActa( int indexActa ){
     cout << this->actas[ indexActa ].getDirector().getNombre() << endl;
     cout << this->actas[ indexActa ].getCoDirector().getNombre() << endl;
     cout << this->actas[ indexActa ].estadoCerrada() << endl;
+
+// LEEEME / READ ME // HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+// STEVEN NO ENFERMO LEEME
     
+"""
+    //a;adir for para que todos los index de criteriosEvaluacion se impriman // Trabajo pausado debido a problemas de salud // 
+
+    Terminar imprimir acta, borrar calificacion, 
+
+tener en cuenta que voy a tener que agregar algo para imprimir criterio de evaluacion
+constructor criterios de evaluacion
+app cuando imprimas el acta despues de jurado 2 imprimes criterio con titulo, 
+cerrar acta acta.h acta.cpp
+
+calculoNotas
+final de acta.cpp revisar
+jurado a acta rev9sar
+
+
+"""
     cout << this->actas[ indexActa ].criteriosEvaluacion[1].getCriterioEvaluacion() << endl;
     cout << "hola" << endl;
 
