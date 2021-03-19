@@ -437,6 +437,7 @@ bool App::borrarActa( int indexActas ){
 
     if( this->actas[indexActas].estadoCerrada() == ABIERTA ){
         this->actas.erase( this->actas.begin() + indexActas );
+        return true;
     }
     return false;
 }
