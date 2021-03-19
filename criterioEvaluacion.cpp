@@ -1,44 +1,71 @@
 #include "criterioEvaluacion.h"
 #include "string"
 
-criterioEvaluacion::criterioEvaluacion( string id, string titulo, string observacion, float calificacion, float porcentajePonderacion ){
-        this->id = id;
-        this->titulo = titulo;
-        this->observacion = observacion;
-        this->calificacion = calificacion;
-        this->porcentajePonderacion = porcentajePonderacion;
+criterioEvaluacion::criterioEvaluacion( string idCriterio, string titulo, string observacionJurado1, string observacionJurado2, string ObservacionesAdicionales, float calificacionJurado1, float calificacionJurado2, float porcentajePonderacion, float calificacionCriterio ){
+    this->idCriterio = idCriterio;
+    this->titulo = titulo;
+    this->observacionJurado1 = observacionJurado1;
+    this->observacionJurado2 = observacionJurado2;
+    this->observacionesAdicionales = observacionesAdicionales;
+    this->calificacionJurado1 = calificacionJurado1;
+    this->calificacionJurado2 = calificacionJurado1;
+    this->porcentajePonderacion = porcentajePonderacion;
 }
 
-void criterioEvaluacion::agregarObservacion( string observacion ){
+void criterioEvaluacion::agregarObservacionJurado1( string observacionJurado1 ){
 
-    this->observacion += observacion;
-
-}
-void criterioEvaluacion::borrarObservacion( ){
-
-    this->observacion = "";
-}
-
-void criterioEvaluacion::agregarCalificacion( float calificacion ){
-
-    this->calificacion = calificacion;
+    this->observacionJurado1 = observacionJurado1;
 
 }
 
-void criterioEvaluacion::borrarCalificacion(){
+void criterioEvaluacion::agregarObservacionJurado2( string observacionJurado2 ){
 
-    this->calificacion = 0.0;
+    this->observacionJurado2 = observacionJurado2;
 
 }
 
-string criterioEvaluacion::getCriterioEvaluacion(){
+void criterioEvaluacion::borrarObservacionJurado1( ){
 
-    string textoCalificacion = std::to_string(this->calificacion);
+    this->observacionJurado1 = "";
+}
 
-    string textoPorcentajePonderacion = std::to_string(this->porcentajePonderacion);
+void criterioEvaluacion::borrarObservacionJurado2( ){
 
-    string stringCriterioEvaluacion = this->titulo + this->id + this->observacion + textoCalificacion + textoPorcentajePonderacion;
+    this->observacionJurado2 = "";
+}
 
-    return stringCriterioEvaluacion;
+void criterioEvaluacion::agregarObservacionesAdicionales( string observacionesAdicionales ){
+
+    this->observacionesAdicionales = observacionesAdicionales;
+
+}
+
+void criterioEvaluacion::agregarCalificacionJurado1( float calificacionJurado1 ){
+
+    this->calificacionJurado1 = calificacionJurado1;
+
+}
+
+void criterioEvaluacion::agregarCalificacionJurado2( float calificacionJurado2 ){
+
+    this->calificacionJurado1 = calificacionJurado2;
+
+}
+
+void criterioEvaluacion::calculoCalificacionCriterio(){
+
+    this->calificacionCriterio = ( ( this->calificacionJurado1 + this->calificacionJurado2 ) / 2 );
+
+}
+
+void criterioEvaluacion::borrarCalificacionJurado1(){
+
+    this->calificacionJurado1 = 0.0;
+
+}
+
+void criterioEvaluacion::borrarCalificacionJurado2(){
+
+    this->calificacionJurado2 = 0.0;
 
 }

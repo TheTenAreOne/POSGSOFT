@@ -9,9 +9,11 @@ using std::cin;
 using std::string;
 using std::endl;
 
+// Constructor por defecto de la clase App que inicializa todo el programa en sí.
+
 App::App(){}
 
-//Métodos App
+// Menú para muestra y selección de las diferentes opciones dentro del programa.
 
 void App::menu( ){
 
@@ -46,6 +48,8 @@ void App::menu( ){
 
     return;
 }
+
+// Genera la fecha del sistema en el formato "mes de dia de año", por ejemplo "17 de febrero de 2003".
 
 string App::generarFecha(){
 
@@ -114,9 +118,27 @@ string App::generarFecha(){
     return fecha;
 
 }
+
+string App::generarNumeroActa( string periodo){
+    string numero;
+    numero = this->idActas++ + "-" + periodo;
+    return numero;
+}
+
+void App::mostrarPersonas(){
+    int i;
+    int indexPersonas;
+    cout << "[" << 0 << "]"<< "N/A" << endl;
+    for( i = 0; i < personas.size(); i++ ){
+        cout <<"[" << i+1 << "] " << personas[ i ].getNombre();
+    }
+    return;
+}
+
 //Crear un acta
+
 void App::crearActa(){
-    string nombreDelTrabajo, autor, periodo, numero, enfasis, fecha;
+    string nombreDelTrabajo, autor, periodo, numero, enfasis, fecha, existenciaCoDirector;
     int director, codirector, jurado1, jurado2, modalidad;
     cout << "<>===<>===<>===<>===<>===<>===<>" << endl;
     cout << "             Creando acta" << endl;
@@ -138,9 +160,23 @@ void App::crearActa(){
     cin >> director;
     director--;
 
-    cout << "Co director: " << endl;
-    cin >> codirector;
-    codirector--;
+    cout << "¿Existe un Co Director? [Si] [No]: " << endl;
+
+    cin >> existenciaCoDirector;
+
+    if( existenciaCoDirector == "Si"){
+
+        cout << "Co director: " << endl;
+        cin >> codirector;
+        codirector--;
+
+    }
+
+    // DANIEL REVISAME
+
+    //Necesito ayuda para hacer bien este condicional // DANIEL REVISAME // Permita a la asistente de la maestría crear una nueva acta: Esta acta tiene la información de la fecha, el número del acta, nombre del estudiante, nombre del trabajo, tipo de trabajo, director, codirector (si existe), jurado 1 y jurado 2.  El estado del acta cuando es creada por la asistente es “abierto”. 
+
+    // DANIEL REVISAME
 
     cout << "Enfasis en: " << endl;
     cin >> enfasis;
@@ -167,24 +203,23 @@ void App::crearActa(){
     cout << "Acta creada" << endl;
 
     return;
+
 }
 
-string App::generarNumeroActa( string periodo){
-    string numero;
-    numero = this->idActas++ + "-" + periodo;
-    return numero;
-}
-void App::mostrarPersonas(){
+int App::verificarPersona( int idPersona, int idActa ){
     int i;
-    int indexPersonas;
-    cout << "[" << 0 << "]"<< "N/A" << endl;
-    for( i = 0; i < personas.size(); i++ ){
-        cout <<"[" << i+1 << "] " << personas[ i ].getNombre();
+    for( i = 0; i < this->actas.size(); i++ ){
+        if( this->actas[i].getJurado1().getId() == idPersona || this->actas[i].getJurado2().getId() == idPersona || this->actas[i].getDirector().getId() == idPersona || this->actas[i].getCoDirector().getId() == idPersona){
+            return i;
+        }else{
+            cout << "El usuario [" << idPersona << "] no hace parte del acta." << endl;
+            return -1;
+        }
     }
-    return;
+    cout << "Acta [" << idActa << "] no fue encontrada." << endl;
+    return -1;
 }
 
-//Agrega una persona
 void App::agregarPersona( ){
     string nombre;
     bool tipoUniversidad;
@@ -204,74 +239,61 @@ void App::agregarPersona( ){
     return;
 }
 
-//Verifica que la persona con idPersona haga parte del acta (ya sea director o jurado)
-int App::verificarPersona( int idPersona, int idActa ){
-    int i;
-    for( i = 0; i < this->actas.size(); i++ ){
-        if( this->actas[i].getJurado1().getId() == idPersona || this->actas[i].getJurado2().getId() == idPersona || this->actas[i].getDirector().getId() == idPersona || this->actas[i].getCoDirector().getId() == idPersona){
-            return i;
-        }else{
-            cout << "El usuario [" << idPersona << "] no hace parte del acta." << endl;
-            return -1;
-        }
-    }
-    cout << "Acta [" << idActa << "] no fue encontrada." << endl;
-    return -1;
-}
+void App::agregarObservacionJurado1( int indexActa, int idCriterio, string observacionJurado1 ){
 
-// Cambia la observacion del criterio nCriterio de acta[ indexActa ] a observacion
-//indexActa : index para el vector de actas
-//nCriterio : index para el vector de criterioEvaluacion
-//observacion : observacion a agregar
-void App::agregarObservacion( int indexActa, int nCriterio, string observacion ){
-
-    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].agregarObservacion( observacion );
+    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].agregarObservacionJurado1( observacionJurado1 );
     cout << "Observacion agregada." << endl;
     return;
 }
 
-// Borra la observacion del criterio nCriterio de acta[ indexActa ]
-//indexActa : index para el vector de actas
-//nCriterio : index para el vector de criterioEvaluacion
-void App::borrarObservacion( int indexActa, int nCriterio ){
+void App::agregarObservacionJurado2( int indexActa, int idCriterio, string observacionJurado2 ){
 
-    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].borrarObservacion( );
+    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].agregarObservacionJurado2( observacionJurado2 );
+    cout << "Observacion agregada." << endl;
+    return;
+}
+
+void App::borrarObservacionJurado1( int indexActa, int idCriterio ){
+
+    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].borrarObservacionJurado1( );
     cout << "Observacion borrada." << endl;
     return;
 }
 
-// [ C1, C2, C3, C4, C5, C6, C7, C8 ]
+void App::borrarObservacionJurado2( int indexActa, int idCriterio ){
 
+    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].borrarObservacionJurado1( );
+    cout << "Observacion borrada." << endl;
+    return;
+}
 
+void App::agregarCalificacionJurado1( int indexActa, int idCriterio, float calificacion ){
 
-// Cambia la calificacion de la calificacion nCriterio de acta[ indexActa ] a la calificacion ingresada
-//indexActa : index para el vector de actas
-//nCriterio : index para el vector de criterioEvaluacion
-//calificacion : calificacion a ingresar
-
-void App::agregarCalificacion( int indexActa, int nCriterio, float calificacion ){
-
-    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].agregarCalificacion( calificacion );
+    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].agregarCalificacionJurado1( calificacion );
     cout << "Calificacion agregada." << endl;
     return;
 }
 
-// Borra la calificacion del criterio nCriterio de acta[ indexActa ]
-//indexActa : index para el vector de actas
-//nCalificacion : index para el vector de criterioEvaluacion
+void App::agregarCalificacionJurado2( int indexActa, int idCriterio, float calificacion ){
 
-void App::borrarCalificacion( int indexActa, int nCriterio ){
+    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].agregarCalificacionJurado2( calificacion );
+    cout << "Calificacion agregada." << endl;
+    return;
+}
 
-    this->actas[ indexActa ].criteriosEvaluacion[ nCriterio ].borrarCalificacion();
+void App::borrarCalificacionJurado1( int indexActa, int idCriterio ){
+
+    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].borrarCalificacionJurado1();
     cout << "Calificacion borrada." << endl;
     return;
 }
 
-//Identifica el rol de persona con idPersona en el acta  con idActa
-//1: jurado1, 2: jurado2, 3: director, 4: codirector
-// idPersona es el id de la persona que se desea saber el rol
-// indexActa es el index en el vector acta correspondiente al acta a verificar
-//se usan enums 
+void App::borrarCalificacionJurado2( int indexActa, int idCriterio ){
+
+    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].borrarCalificacionJurado2();
+    cout << "Calificacion borrada." << endl;
+    return;
+}
 
 int App::identificarRolActa( int idPersona, int indexActa ){
 
@@ -288,7 +310,6 @@ int App::identificarRolActa( int idPersona, int indexActa ){
     return -1;
 }
 
-//Muestra las actas de la modalidad recibida
 void App::mostrarActasPorModalidad( int modalidad ){
     int i;
     cout << "Modalidad : ";
@@ -306,7 +327,6 @@ void App::mostrarActasPorModalidad( int modalidad ){
     return;
 }
 
-//falta terminar
 void App::imprimirActa( int indexActa ){
     
     cout << this->actas[ indexActa ].getNombreTrabajo() << endl;
@@ -322,33 +342,9 @@ void App::imprimirActa( int indexActa ){
     cout << this->actas[ indexActa ].getCoDirector().getNombre() << endl;
     cout << this->actas[ indexActa ].estadoCerrada() << endl;
 
-// LEEEME / READ ME // HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
-// STEVEN NO ENFERMO LEEME
-    
-/*
-    //a;adir for para que todos los index de criteriosEvaluacion se impriman // Trabajo pausado debido a problemas de salud // 
-
-    Terminar imprimir acta, borrar calificacion, 
-
-tener en cuenta que voy a tener que agregar algo para imprimir criterio de evaluacion
-constructor criterios de evaluacion
-app cuando imprimas el acta despues de jurado 2 imprimes criterio con titulo, 
-cerrar acta acta.h acta.cpp
-
-calculoNotas
-final de acta.cpp revisar
-jurado a acta rev9sar
-
-
-*/
-    cout << this->actas[ indexActa ].criteriosEvaluacion[1].getCriterioEvaluacion() << endl;
-    cout << "hola" << endl;
-
     return;
 }
 
-//Consultar cuántos trabajos de grado ha dirigido un profesor dado. 
 void App::trabajoDirigidos( int indexPersona ){
     int idPersona = this->personas[ indexPersona ].getId();
     int i, counter = 0;
@@ -363,7 +359,22 @@ void App::trabajoDirigidos( int indexPersona ){
 
 }
 
-//Ver la lista (sin repetidos) de todos los jurados que han participado en las actas registradas
+// Aqui queda el metodo de saber de que trabajos ha sido jurado una persona
+
+void App::trabajoJurado( int indexPersona ){
+    int idPersona = this->personas[ indexPersona ].getId();
+    int i, counter = 0;
+    for( i = 0; i < this->actas.size(); i++ ){
+        if( ( this->actas[i].getJurado1().getId() == idPersona ) || ( this->actas[i].getJurado2().getId() == idPersona ) ){
+            counter++;
+            cout << this->actas[i].getNombreTrabajo() << " por " << this->actas[i].getAutor() << endl;
+        }
+        cout << "Trabajos de los que ha sido jurado: " << counter << endl;
+    }
+    return;
+
+}
+
 void App::verJuradosActasRegistradas( ){
     int i, j;
     vector<Persona> juradosRepetidos;
@@ -399,8 +410,14 @@ void App::verJuradosActasRegistradas( ){
     return;
 }
 
-//7.	Permita lista todas las actas que se encuentran almacenadas en el sistema: 
-//   Mostrará el número del acta, la fecha, el nombre del estudiante, el estado, la nota si la tiene y el estado. 
+
+
+//DANIEL LEEEME
+
+//DANIEL LEEME
+
+// PQ HAY DOS DE ESTAS FUNCIONES, PQ UNA ES AC Y LA OTRA NO, QUE HACEN
+
 void App::mostrarTodasActas( ){
     int i;
     cout << "====Todas las actas====" << endl;
@@ -410,9 +427,6 @@ void App::mostrarTodasActas( ){
     cout << "=======================" << endl;
     return;
 }
-
-// 8.	Permita listar únicamente las actas abiertas / cerradas.  
-//Misma información del campo anterior pero solo para las actas en el estado solicitado.
 
 void App::mostrarActasAC( bool cerrada ){
     int i;
@@ -428,7 +442,6 @@ void App::mostrarActasAC( bool cerrada ){
     return;
 }
 
-//10.	Eliminar un acta de grado ( podrán ser eliminadas únicamente las actas no cerradas)
 bool App::borrarActa( int indexActas ){
 
     if( this->actas[indexActas].estadoCerrada() == ABIERTA ){

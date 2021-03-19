@@ -5,19 +5,28 @@ using std::string;
 
 class criterioEvaluacion{
     private:
-        string id;
+        string idCriterio;
         string titulo;
-        string observacion;
-        float calificacion;
+        string observacionJurado1;
+        string observacionJurado2;
+        string observacionesAdicionales;
+        float calificacionJurado1;
+        float calificacionJurado2;
+        float calificacionCriterio;
         float porcentajePonderacion;
 
     public:
-        criterioEvaluacion( string id, string titulo, string observacion, float calificacion, float porcentajePonderacion );
-        void agregarObservacion(string observacion);
-        void borrarObservacion();
-        void agregarCalificacion(float calificacion);
-        void borrarCalificacion();
-        string getCriterioEvaluacion();
+        criterioEvaluacion( string idCriterio, string titulo, string observacionJurado1, string observacionJurado2, string observacionesAdicionales, float calificacionJurado1, float calificacionJurado2, float porcentajePonderacion, float calificacionCriterio );
+        void agregarObservacionJurado1(string observacionJurado1);
+        void agregarObservacionJurado2(string observacionJurado2);
+        void agregarObservacionesAdicionales(string observacionesAdicionales);
+        void borrarObservacionJurado1();
+        void borrarObservacionJurado2();
+        void agregarCalificacionJurado1(float calificacionJurado1);
+        void agregarCalificacionJurado2(float calificacionJurado2);
+        void borrarCalificacionJurado1();
+        void borrarCalificacionJurado2();
+        void calculoCalificacionCriterio();
         
 };
 

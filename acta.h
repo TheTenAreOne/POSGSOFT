@@ -6,8 +6,13 @@
 #include <vector>
 using std::string;
 using std::vector;
+
 enum{
     CERRADA = true, ABIERTA = false
+};
+
+enum{
+    APROBADA = true, REPROBADO = false
 };
 
 class Acta{
@@ -17,15 +22,25 @@ class Acta{
         string fecha;
         string autor;
         string nombreTrabajo;
+
+        // Modalidad deberia ser cambiado por string tipoTrabajo, de otra manera es inutil hacer uso de enums en esta parte
+
         int modalidad;
         string periodo;
         Persona director;
+
+
+        // Siempre existira un director, mas no siempre un CoDirector, por lo tanto; habria que preguntar si en cada acta en especifico este se encuentra presente
+
         Persona coDirector;
         string enfasis;
         Persona jurado1;
         Persona jurado2;
         int nota;
         bool cerrada;
+        bool aprobada;
+
+        //AÑADI ESTO DE APROBADA O REPROBADA // DANIEL LEEME // DANIEL LEEME
         
     public:
         vector<criterioEvaluacion> criteriosEvaluacion;
