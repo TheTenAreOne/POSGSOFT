@@ -172,12 +172,6 @@ void App::crearActa(){
 
     }
 
-    // DANIEL REVISAME
-
-    //Necesito ayuda para hacer bien este condicional // DANIEL REVISAME // Permita a la asistente de la maestría crear una nueva acta: Esta acta tiene la información de la fecha, el número del acta, nombre del estudiante, nombre del trabajo, tipo de trabajo, director, codirector (si existe), jurado 1 y jurado 2.  El estado del acta cuando es creada por la asistente es “abierto”. 
-
-    // DANIEL REVISAME
-
     cout << "Enfasis en: " << endl;
     cin >> enfasis;
 

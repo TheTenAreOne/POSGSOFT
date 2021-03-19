@@ -13,6 +13,7 @@ Acta::Acta( string autor, string periodo, Persona director, Persona coDirector, 
     this->jurado1 = jurado1;
     this->jurado2 = jurado2;
     this->fecha = fecha;
+    this->cerrada = ABIERTA;
     
     criterioEvaluacion criterio1( "1", "Desarrollo y profundidad en el tratamiento del tema", "", "", "", 0.0, 0.0, 20, 0.0);
     criterioEvaluacion criterio2( "2", "Desafío académico y científico del tema", "", "", "", 0.0, 0.0, 15, 0.0);
