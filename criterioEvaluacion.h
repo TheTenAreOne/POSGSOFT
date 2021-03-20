@@ -27,6 +27,7 @@ class criterioEvaluacion{
         void borrarCalificacionJurado1();
         void borrarCalificacionJurado2();
         void calculoCalificacionCriterio();
+        float getPorcentajePonderacion();
         
 };
 

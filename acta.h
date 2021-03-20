@@ -60,6 +60,8 @@ class Acta{
         string getNombreTrabajo();
         string getPeriodo();
         int getNota();
+        void setNotaFinal( int nota );
+        void setAprobada( bool aprobada );
 
 };
 

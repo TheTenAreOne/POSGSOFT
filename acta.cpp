@@ -85,3 +85,11 @@ int Acta::getNota(){
 string Acta::getNumero(){
     return this->numero;
 }
+
+void Acta::setNotaFinal( int nota ){
+    this->nota = nota;
+}
+
+void Acta::setAprobada( bool aprobada ){
+    this->aprobada = aprobada;
+}

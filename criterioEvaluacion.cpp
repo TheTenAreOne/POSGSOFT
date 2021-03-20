@@ -69,3 +69,7 @@ void criterioEvaluacion::borrarCalificacionJurado2(){
     this->calificacionJurado2 = 0.0;
 
 }
+
+float getPorcentajePonderacion(){
+    return getPorcentajePonderacion;
+}

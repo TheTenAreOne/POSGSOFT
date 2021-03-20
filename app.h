@@ -67,6 +67,7 @@ class App{
         void mostrarTodasActas( );
         void mostrarActasAC( bool cerrada );
         bool borrarActa( int indexActas ); 
+        void calcularNotaFinal( int indexActas );
 };
 
 #endif
