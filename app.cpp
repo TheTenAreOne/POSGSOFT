@@ -458,24 +458,27 @@ bool App::borrarActa( int indexActas ){
 }
 
 void App::calcularNotaFinal( int indexActas ){
+
     int i;
+    
     float notaFinal = 0;
+
     try{
         if( indexActas < 0 || indexActas > this->actas.size() ){
             throw( indexActas );
         }
-        for(i = 0; i < this->actas[indexActas].criteriosEvaluacion[i]; i++){
-            notaFinal += this->actas[indexActas].criteriosEvaluacion[i].calculoCalificacionCriterio() * this->actas[indexActas].criteriosEvaluacion[i].getPorcentajePonderacion();
+        for(i = 0; i < this->actas[ indexActas ].criteriosEvaluacion.size(); i++){
+            notaFinal += this->actas[ indexActas ].criteriosEvaluacion[i].getCalificacionCriterio();
         }
         this->actas[indexActas].setNotaFinal( notaFinal );
         if( notaFinal > 3.5 ){
-            this->actas.setAprobada( true );
+            this->actas[indexActas].setAprobada( true );
         }else{
-            this->actas.setAprobada( false );
+            this->actas[indexActas].setAprobada( false );
         }
 
     }catch( int index ){
         cout << "Ha seleccionado un numero invaliado para el acta." << endl;
     }
-    return;
+
 }

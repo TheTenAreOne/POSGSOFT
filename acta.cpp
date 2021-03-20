@@ -86,7 +86,7 @@ string Acta::getNumero(){
     return this->numero;
 }
 
-void Acta::setNotaFinal( int nota ){
+void Acta::setNotaFinal( float nota ){
     this->nota = nota;
 }
 

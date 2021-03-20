@@ -36,7 +36,7 @@ class Acta{
         string enfasis;
         Persona jurado1;
         Persona jurado2;
-        int nota;
+        float nota;
         bool cerrada;
         bool aprobada;
 
@@ -60,7 +60,7 @@ class Acta{
         string getNombreTrabajo();
         string getPeriodo();
         int getNota();
-        void setNotaFinal( int nota );
+        void setNotaFinal( float nota );
         void setAprobada( bool aprobada );
 
 };

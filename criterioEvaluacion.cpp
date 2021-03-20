@@ -52,12 +52,6 @@ void criterioEvaluacion::agregarCalificacionJurado2( float calificacionJurado2 )
 
 }
 
-void criterioEvaluacion::calculoCalificacionCriterio(){
-
-    this->calificacionCriterio = ( ( this->calificacionJurado1 + this->calificacionJurado2 ) / 2 );
-
-}
-
 void criterioEvaluacion::borrarCalificacionJurado1(){
 
     this->calificacionJurado1 = 0.0;
@@ -70,6 +64,8 @@ void criterioEvaluacion::borrarCalificacionJurado2(){
 
 }
 
-float getPorcentajePonderacion(){
-    return getPorcentajePonderacion;
+float criterioEvaluacion::getCalificacionCriterio(){
+
+    return this->calificacionCriterio = ( ( this->calificacionJurado1 + this->calificacionJurado2 ) / 2 ) * ( this->porcentajePonderacion / 100 );
+
 }
