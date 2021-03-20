@@ -81,3 +81,7 @@ string Acta::getFecha(){
 int Acta::getNota(){
     return this->nota;
 }
+
+string Acta::getNumero(){
+    return this->numero;
+}

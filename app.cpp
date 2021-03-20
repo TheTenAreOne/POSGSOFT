@@ -20,33 +20,43 @@ void App::menu( ){
     int opc;
 
     do{
+
         cout << "<>===<>===<>===<>===<>===<>===<>" << endl;
-        cout << " 1 : Agregar persona" << endl;
-        cout << " 2 : Crear acta" << endl;
+        cout << " 1 : Agregar Persona" << endl;
+        cout << " 2 : Crear Acta" << endl;
         cout << " 3 : Agregar observacion" << endl;
         cout << " 4 : Cerrar acta" << endl;
         cout << " 5 : Salir" << endl;
         cin >> opc;
-    }while( opc != 5 );
 
-    switch ( opc )
-    {
-    case 1:
-        agregarPersona();
-        break;
-    case 2:
-        crearActa();
-        break;
-    case 3:
+        switch ( opc ){
 
-        break;
-    case 4:
-        break;
-    default:
-        break;
+        case 1:
+
+            agregarPersona();
+            break;
+
+        case 2:
+
+            this->crearActa();
+            break;
+
+        case 3:
+
+            break;
+
+        case 4:
+
+            break;
+
+        default:
+
+            break;
+
     }
 
-    return;
+    }while( opc != 5 );
+
 }
 
 // Genera la fecha del sistema en el formato "mes de dia de año", por ejemplo "17 de febrero de 2003".
@@ -144,7 +154,12 @@ void App::crearActa(){
     cout << "             Creando acta" << endl;
 
     cout << "Nombre del trabajo: " << endl;
-    cin >> nombreDelTrabajo;
+
+    //CAMBIAR CIN POR GETLINE PORQUE CIN NO RECIBE ESPACIOS
+
+    cin.ignore(100, '\n');
+
+    getline(cin, nombreDelTrabajo);
 
     cout << "Autor: " << endl;
     cin >> autor;
@@ -328,7 +343,7 @@ void App::imprimirActa( int indexActa ){
     cout << this->actas[ indexActa ].getPeriodo() << endl;
     cout << this->actas[ indexActa ].getAutor() << endl;    
     cout << this->actas[ indexActa ].getModalidad() << endl;
-    cout << this->actas[ indexActa ].getNumero() << endl;
+    // cout << this->actas[ indexActa ].getNumero() << endl;
     cout << this->actas[ indexActa ].getId() << endl;
     cout << this->actas[ indexActa ].getJurado1().getNombre() << endl;
     cout << this->actas[ indexActa ].getJurado2().getNombre() << endl;
