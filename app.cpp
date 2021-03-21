@@ -649,7 +649,7 @@ void App::verJuradosIE( bool IE ){
 
 //Agregar observaciones adicional
 void App::agregarObservacionesAdicionalesActa( int indexActa, string observacion ){
-    this->actas[indexActa].agregarObservacionAdicional( string observacion );
+    this->actas[indexActa].agregarObservacionAdicional( observacion );
     return;
 }
 
