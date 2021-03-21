@@ -537,6 +537,18 @@ void App::verJuradosActasRegistradas( ){
         }
     }
 
+/*
+
+vectorPersonasActa = vectorPersonas
+
+director = vectorPersonasActa[1]
+
+vectorPersonasActa.erase(1)
+
+jurado = vectorPersonasActa[1]
+
+*/
+
     //Imprime los jurados
     for( i = 0; i < jurados.size(); i++ ){
         cout << jurados[i].getNombre() << endl;
