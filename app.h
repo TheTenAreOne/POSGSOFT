@@ -73,6 +73,7 @@ class App{
         void cerrarActa( int indexActa);
         void verJuradosIE( bool IE);//IE : Interno Externo
         void imprimirATxt( int indexActa );
+        void agregarObservacionesAdicionalesActa( int indexActa, string observacion );
 };
 
 #endif
