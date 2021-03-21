@@ -18,14 +18,14 @@ Acta::Acta( string autor, string periodo, Persona director, Persona coDirector, 
     this->cerrada = ABIERTA;
     this->observacionesAdicionales = "";
     
-    criterioEvaluacion criterio1( "1", "Desarrollo y profundidad en el tratamiento del tema", "", "", "", 0.0, 0.0, 20, 0.0);
-    criterioEvaluacion criterio2( "2", "Desafío académico y científico del tema", "", "", "", 0.0, 0.0, 15, 0.0);
-    criterioEvaluacion criterio3( "3", "Cumplimiento de los objetivos propuestos", "", "", "", 0.0, 0.0, 10, 0.0);
-    criterioEvaluacion criterio4( "4", "Creatividad e innovación de las soluciones y desarrollos propuestos", "", "", "", 0.0, 0.0, 10, 0.0);
-    criterioEvaluacion criterio5( "5", "Validez de los resultados y conclusiones", "", "", "", 0.0, 0.0, 20, 0.0);
-    criterioEvaluacion criterio6( "6", "Manejo y procesamiento de la información y bibliografía", "", "", "", 0.0, 0.0, 10, 0.0);
-    criterioEvaluacion criterio7( "7", "Calidad y presentación del documento escrito", "", "", "", 0.0, 0.0, 7.5, 0.0);
-    criterioEvaluacion criterio8( "8", " Presentación oral", "", "", "", 0.0, 0.0, 7.5, 0.0);
+    criterioEvaluacion criterio1( "1", "Desarrollo y profundidad en el tratamiento del tema", "", "", 0.0, 0.0, 20, 0.0);
+    criterioEvaluacion criterio2( "2", "Desafío académico y científico del tema", "", "", 0.0, 0.0, 15, 0.0);
+    criterioEvaluacion criterio3( "3", "Cumplimiento de los objetivos propuestos", "", "", 0.0, 0.0, 10, 0.0);
+    criterioEvaluacion criterio4( "4", "Creatividad e innovación de las soluciones y desarrollos propuestos", "", "", 0.0, 0.0, 10, 0.0);
+    criterioEvaluacion criterio5( "5", "Validez de los resultados y conclusiones", "", "", 0.0, 0.0, 20, 0.0);
+    criterioEvaluacion criterio6( "6", "Manejo y procesamiento de la información y bibliografía", "", "", 0.0, 0.0, 10, 0.0);
+    criterioEvaluacion criterio7( "7", "Calidad y presentación del documento escrito", "", "", 0.0, 0.0, 7.5, 0.0);
+    criterioEvaluacion criterio8( "8", " Presentación oral", "", "", 0.0, 0.0, 7.5, 0.0);
 
     this->criteriosEvaluacion.push_back(criterio1);
     this->criteriosEvaluacion.push_back(criterio2);
