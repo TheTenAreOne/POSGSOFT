@@ -21,19 +21,22 @@ void App::menu( ){
 
     do{
 
-        cout << "<>===<>===<>===<>===<>===<>===<>" << endl;
-        cout << " 1 : Agregar Persona" << endl;
-        cout << " 2 : Crear Acta" << endl;
-        cout << " 3 : Agregar observacion" << endl;
-        cout << " 4 : Cerrar acta" << endl;
-        cout << " 5 : Salir" << endl;
+        cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\n 1: Agregar Personas" << endl;
+        cout << " 2: Crear Acta" << endl;
+        cout << " 3: Agregar observacion" << endl;
+        cout << " 4: Agregar observaciones adicionales" << endl;
+        cout << " 4: Cerrar acta" << endl;
+        cout << " 5: Salir" << endl;
+        cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\nSeleccione la opcion que desea realizar: ";
         cin >> opc;
 
         switch ( opc ){
 
         case 1:
 
-            agregarPersona();
+            this->agregarPersona();
             break;
 
         case 2:
@@ -42,6 +45,8 @@ void App::menu( ){
             break;
 
         case 3:
+
+            this->imprimirActa(0);
 
             break;
 
@@ -56,6 +61,69 @@ void App::menu( ){
     }
 
     }while( opc != 5 );
+
+}
+
+void App::agregarPersona(){
+
+    int continuar = 1;
+
+    while(continuar == 1){
+
+        cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\n        Agregando persona       " << endl;
+        cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+ 
+        string nombre;
+
+        int tipoUniversidadEntero = 0;
+
+        int tipoUniversidad;
+
+        string tipoUniversidadString;
+
+        cin.ignore(100, '\n');
+
+        cout << "\nNombre: ";
+
+        getline(cin, nombre);
+
+        do{
+
+            cout << "\nQue es esta persona respecto a la universidad? [1: Interno] | [2: Externo]: ";
+
+            cin >> tipoUniversidadEntero;
+
+            if(tipoUniversidadEntero == 1){
+                tipoUniversidadString = "Interno";
+                tipoUniversidad = true;
+                break;
+            }
+
+            else if(tipoUniversidadEntero == 2){
+                tipoUniversidadString = "Externo";
+                tipoUniversidad = false;
+                break;
+            }
+
+            else{
+                cout << "\nEl valor ingresado no es valido, por favor, intentalo de nuevo." << endl;
+            }
+
+        }while(tipoUniversidadEntero);
+
+        //Hago uso de malas prácticas (break) dentro de este while, debido a que nunca logré hacerlo funcionar bien poniendo la condición como debería ser.
+
+        Persona newPersona( nombre, idPersonas++, tipoUniversidad );
+        this->personas.push_back( newPersona );
+
+        cout << "\n" << nombre << " [" << tipoUniversidadString << "] agregado con exito." << endl;
+
+        cout << "\nDesea continuar ingresando personas? [1: Si] [2: No]: ";
+
+        cin >> continuar;
+
+    }
 
 }
 
@@ -129,89 +197,157 @@ string App::generarFecha(){
 
 }
 
+// FUNCION ON HOLD
+
+/*
 string App::generarNumeroActa( string periodo){
     string numero;
     numero = this->idActas++ + "-" + periodo;
     return numero;
 }
+*/
 
 void App::mostrarPersonas(){
+
     int i;
+
     int indexPersonas;
-    cout << "[" << 0 << "]"<< "N/A" << endl;
-    for( i = 0; i < personas.size(); i++ ){
-        cout <<"[" << i+1 << "] " << personas[ i ].getNombre();
+
+    if( personas.size() == 0){
+
+        cout << "No hay personas disponibles para mostrar." << endl;
+
     }
-    return;
+
+    else{
+
+        for( i = 0; i < personas.size(); i++ ){
+
+            cout <<" [" << i+1 << "] " << personas[ i ].getNombre();
+
+        }
+
+    }
+
 }
 
 //Crear un acta
 
 void App::crearActa(){
-    string nombreDelTrabajo, autor, periodo, numero, enfasis, fecha, existenciaCoDirector;
-    int director, codirector, jurado1, jurado2, modalidad;
-    cout << "<>===<>===<>===<>===<>===<>===<>" << endl;
-    cout << "             Creando acta" << endl;
 
-    cout << "Nombre del trabajo: " << endl;
+    if(personas.size() == 0){
 
-    //CAMBIAR CIN POR GETLINE PORQUE CIN NO RECIBE ESPACIOS
-
-    cin.ignore(100, '\n');
-
-    getline(cin, nombreDelTrabajo);
-
-    cout << "Autor: " << endl;
-    cin >> autor;
-
-    cout << "Periodo: " << endl;
-    cin >> periodo;
-
-    cout << "Personas disponibles: " << endl;
-    mostrarPersonas();
-
-    cout << "Ingresar numero de persona para elegir rol: " << endl;
-    cout << "Director: " << endl;
-    cin >> director;
-    director--;
-
-    cout << "¿Existe un Co Director? [Si] [No]: " << endl;
-
-    cin >> existenciaCoDirector;
-
-    if( existenciaCoDirector == "Si"){
-
-        cout << "Co director: " << endl;
-        cin >> codirector;
-        codirector--;
+        cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\n             Error              " << endl;
+        cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\nAgrega personas antes de intentar crear un acta." << endl;
 
     }
 
-    cout << "Enfasis en: " << endl;
-    cin >> enfasis;
+    else{
+        
+        string nombreDelTrabajo, autor, periodo, numero, enfasis, fecha;
 
-    cout << "Modalidad [1:Investigacion] [2:Industria]" << endl;
-    cin >> modalidad;
+        int director, codirector, jurado1, jurado2, modalidad, existenciaCoDirector;
 
-    cout << "Personas disponibles: " << endl;
-    mostrarPersonas();
+        cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\n          Creando acta          " << endl;
+        cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
 
-    cout << "Jurado #1: " << endl;
-    cin >> jurado1;
-    jurado1--;
+        cout << "\nNombre del trabajo: ";
 
-    cout << "Jurado #2: " << endl;
-    cin >> jurado2;
-    jurado2--;
+        cin.ignore(100, '\n');
 
-    numero = generarNumeroActa( periodo );
-    generarFecha( );
+        getline(cin, nombreDelTrabajo);
 
-    Acta nuevaActa( autor, periodo, this->personas[ director ], this->personas[ codirector ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
-    this->actas.push_back( nuevaActa );
-    cout << "Acta creada" << endl;
+        cout << "\nAutor: ";
+        getline(cin, autor);
 
-    return;
+        cout << "\nPeriodo: ";
+        cin >> periodo;
+
+        cout << "\nPersonas disponibles:";
+        mostrarPersonas();
+
+        cout << "\n\nIngrese el numero de la persona para asignarle el rol de Director: ";
+
+        cin >> director;
+
+        director--;
+
+        while(existenciaCoDirector){
+
+            cout << "\nExiste un Co Director? [1: Si] [2: No]: ";
+
+            cin >> existenciaCoDirector;
+
+            if(existenciaCoDirector == 1){
+                cout << "\nIngrese el numero de la persona para asignarle el rol de Co Director: ";
+                cin >> codirector;
+                codirector--;
+                break;
+            }
+
+            //SE REQUIERE DE UNA U OTRA MANERA DECLARAR UN CODIRECTOR O EL CONSTRUCTOR DE ABAJO SE ROMPE POR COMPLETO
+
+            else if(existenciaCoDirector == 2){
+                codirector = -1
+                break;
+            }
+
+            else{
+                cout << "\nEl valor ingresado no es valido, por favor, intentalo de nuevo." << endl;
+            }
+        }
+
+        cin.ignore(100, '\n');
+
+        cout << "\nIngrese el enfasis: ";
+        getline(cin, enfasis);
+
+        while(modalidad){
+
+            cout << "\nModalidad [1: Investigacion] [2: Industria]: ";
+
+            cin >> modalidad;
+
+            if(modalidad == 1){
+                break;
+            }
+
+            else if(modalidad == 2){
+                break;
+            }
+
+            else{
+                cout << "\nEl valor ingresado no es valido, por favor, intentalo de nuevo." << endl;
+            }
+
+        }     
+
+        cout << "\nPersonas disponibles:";
+        mostrarPersonas();
+
+        cout << "\n\nIngrese el numero de la persona para signarle el rol de Jurado #1: ";
+        cin >> jurado1;
+        jurado1--;
+
+        cout << "\nIngrese el numero de la persona para signarle el rol de Jurado #2: ";
+        cin >> jurado2;
+        jurado2--;
+
+        //numero = generarNumeroActa( periodo );
+        generarFecha();
+
+        Acta nuevaActa( autor, periodo, this->personas[ director ], this->personas[ codirector ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
+
+        this->actas.push_back( nuevaActa );
+
+        //DONDE ESTA EL "HA" DEBERIA IR LA FUNCION NUMERO QUE ESTA DANDO PROBLEMAS
+
+        cout << "\nActa " << "ha" << " sido creada con exito." << endl;
+
+    }
 
 }
 
@@ -221,61 +357,12 @@ int App::verificarPersona( int idPersona, int idActa ){
         if( this->actas[i].getJurado1().getId() == idPersona || this->actas[i].getJurado2().getId() == idPersona || this->actas[i].getDirector().getId() == idPersona || this->actas[i].getCoDirector().getId() == idPersona){
             return i;
         }else{
-            cout << "El usuario [" << idPersona << "] no hace parte del acta." << endl;
+            cout << "La persona identificada con el ID #[" << idPersona << "] no hace parte del acta." << endl;
             return -1;
         }
     }
     cout << "Acta [" << idActa << "] no fue encontrada." << endl;
     return -1;
-}
-
-void App::agregarPersona( ){
-
-    string nombre;
-
-    int tipoUniversidadEntero = 0;
-
-    int tipoUniversidad;
-
-    string tipoUniversidadString;
-
-    cin.ignore(100, '\n');
-
-    cout << "Nombre: ";
-
-    getline(cin, nombre);
-
-    do{
-
-        cout << "\nQue es esta persona respecto a la universidad? [1: Interno] | [2: Externo]: ";
-
-        cin >> tipoUniversidadEntero;
-
-        if(tipoUniversidadEntero == 1){
-            tipoUniversidadString = "Interno";
-            tipoUniversidad = true;
-            break;
-        }
-
-        else if(tipoUniversidadEntero == 2){
-            tipoUniversidadString = "Externo";
-            tipoUniversidad = false;
-            break;
-        }
-
-        else{
-            cout << "\nEl valor ingresado no es valido, por favor, intentalo de nuevo." << endl;
-        }
-
-    }while(tipoUniversidadEntero);
-
-    //Hago uso de malas prácticas (break) dentro de este while, debido a que nunca logré hacerlo funcionar bien poniendo la condición como debería ser.
-
-    Persona newPersona( nombre, idPersonas++, tipoUniversidad );
-    this->personas.push_back( newPersona );
-
-    cout << "\n" << nombre << " [" << tipoUniversidadString << "] agregado con exito." << endl;
-
 }
 
 void App::agregarObservacionJurado1( int indexActa, int idCriterio, string observacionJurado1 ){
@@ -381,7 +468,6 @@ void App::imprimirActa( int indexActa ){
     cout << this->actas[ indexActa ].getCoDirector().getNombre() << endl;
     cout << this->actas[ indexActa ].estadoCerrada() << endl;
 
-    return;
 }
 
 void App::trabajoDirigidos( int indexPersona ){

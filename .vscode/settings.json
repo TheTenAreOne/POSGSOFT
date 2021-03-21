@@ -8,7 +8,9 @@
         "xutility": "cpp",
         "string": "cpp",
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "*.tcc": "cpp",
+        "istream": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
