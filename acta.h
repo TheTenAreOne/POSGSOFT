@@ -7,6 +7,7 @@
 using std::string;
 using std::vector;
 
+
 enum{
     CERRADA = true, ABIERTA = false
 };
@@ -43,6 +44,7 @@ class Acta{
         //AÑADI ESTO DE APROBADA O REPROBADA // DANIEL LEEME // DANIEL LEEME
         
     public:
+        Acta();
         vector<criterioEvaluacion> criteriosEvaluacion;
         Acta( string autor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha );
 

@@ -18,8 +18,13 @@ enum roles{
 
 // Enum para la identificación de la modalidad del acta.
 
+enum tipoUniversidad{
+    INTERNO = 1, EXTERNO = 2
+};
+
 enum modalidad{
     INVESTIGACION = 1, INDUSTRIA = 2
+
 };
 
 // Enum para la identificación de los meses del año.
