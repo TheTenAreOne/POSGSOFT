@@ -67,6 +67,8 @@ class App{
         void mostrarActasAC( bool cerrada );
         bool borrarActa( int indexActas ); 
         void calcularNotaFinal( int indexActas );
+        void cerrarActa( int indexActa);
+        void verJuradosIE( bool IE);//IE : Interno Externo
 };
 
 #endif

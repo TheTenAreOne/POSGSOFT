@@ -96,3 +96,7 @@ void Acta::setNotaFinal( float nota ){
 void Acta::setAprobada( bool aprobada ){
     this->aprobada = aprobada;
 }
+
+void Acta::setCerrada( bool cerrada ){
+    this->cerrada = CERRADA;
+}

@@ -611,7 +611,8 @@ void App::cerrarActa( int indexActa ){
 
 
 //Ver jurados internos y externos
-void App::verJuradosIE( ){
+//IE : Interno
+void App::verJuradosIE( bool IE ){
     int i, j;
     vector<Persona> juradosRepetidos;
     vector<Persona> jurados;
@@ -619,7 +620,7 @@ void App::verJuradosIE( ){
     //Agrega las personas que han sido jurados
     for( i = 0; i < this->personas.size(); i++ ){
         for( j = 0; j < this->actas.size(); j++ ){
-            if( this->personas[i].getId() == this->actas[j].getJurado1().getId() || this->personas[i].getId() == this->actas[j].getJurado2().getId() ){
+            if( (this->personas[i].getId() == this->actas[j].getJurado1().getId() || this->personas[i].getId() == this->actas[j].getJurado2().getId()) && (this->personas[i].getTipoUniversidad() == IE) ){
                 juradosRepetidos.push_back( this->personas[i] );
             }
         }
