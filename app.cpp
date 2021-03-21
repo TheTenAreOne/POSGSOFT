@@ -671,7 +671,7 @@ void App::imprimirATxt( int indexActa ){
     archivoActa << "Jurado 2: " << this->actas[ indexActa ].getJurado2().getNombre() << endl;
 
     for( i = 0; i < this->actas[ indexActa ].criteriosEvaluacion.size(); i++ ){
-        archivoActa << this->actas[ indexActa ].criteriosEvaluacion[i].getIdCriterio() << "  " << this->actas[ indexActa ].criteriosEvaluacion[i].titulo() << endl;
+        archivoActa << this->actas[ indexActa ].criteriosEvaluacion[i].getIdCriterio() << "  " << this->actas[ indexActa ].criteriosEvaluacion[i].getTitulo() << endl;
         archivoActa << "Calificación parcial: " << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionCriterio() << "               " << this->actas[ indexActa ].criteriosEvaluacion[i].getPorcentajePonderacion() << "%" << endl;
         archivoActa << "Observaciones: " << this->actas[ indexActa ].criteriosEvaluacion[i].getObservacionJurado1() << endl;
         archivoActa << this->actas[ indexActa ].criteriosEvaluacion[i].getObservacionJurado2() << endl;
