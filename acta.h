@@ -12,7 +12,7 @@ enum{
 };
 
 enum{
-    APROBADA = true, REPROBADO = false
+    APROBADA = true, REPROBADA = false
 };
 
 class Acta{
@@ -62,6 +62,8 @@ class Acta{
         int getNota();
         void setNotaFinal( float nota );
         void setAprobada( bool aprobada );
+        void setCerrada( bool cerrada );
+        
 
 };
 

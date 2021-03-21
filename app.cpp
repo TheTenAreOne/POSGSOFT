@@ -588,13 +588,55 @@ void App::calcularNotaFinal( int indexActas ){
         }
         this->actas[indexActas].setNotaFinal( notaFinal );
         if( notaFinal > 3.5 ){
-            this->actas[indexActas].setAprobada( true );
+            this->actas[indexActas].setAprobada( APROBADA );
         }else{
-            this->actas[indexActas].setAprobada( false );
+            this->actas[indexActas].setAprobada( REPROBADA );
         }
 
     }catch( int index ){
         cout << "Ha seleccionado un numero invaliado para el acta." << endl;
     }
 
+}
+
+//Cerrar acta
+void App::cerrarActa( int indexActa ){
+    this->actas[ indexActa ].setCerrada( CERRADA );
+}
+
+
+//Ver jurados internos y externos
+void App::verJuradosIE( ){
+    int i, j;
+    vector<Persona> juradosRepetidos;
+    vector<Persona> jurados;
+    bool agregado;
+    //Agrega las personas que han sido jurados
+    for( i = 0; i < this->personas.size(); i++ ){
+        for( j = 0; j < this->actas.size(); j++ ){
+            if( this->personas[i].getId() == this->actas[j].getJurado1().getId() || this->personas[i].getId() == this->actas[j].getJurado2().getId() ){
+                juradosRepetidos.push_back( this->personas[i] );
+            }
+        }
+    }
+
+    //Crea el vector con jurados no repetidos
+    for( i = 0; i < juradosRepetidos.size(); i++ ){
+        agregado = false;
+        for( j = 0; j < jurados.size(); j++ ){
+            if( juradosRepetidos[i].getId() == jurados[j].getId() ){
+                agregado = true;
+            }
+        }
+        if( !agregado ){
+            jurados.push_back( juradosRepetidos[ i ] );
+        }
+    }
+
+    //Imprime los jurados
+    for( i = 0; i < jurados.size(); i++ ){
+        cout << jurados[i].getNombre() << endl;
+    }
+    
+    return;
 }
