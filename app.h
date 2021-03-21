@@ -9,6 +9,7 @@
 using std::string;
 using std::vector;
 using std::fstream;
+using std::ofstream;
 
 // Cuando se usa un enum, lo que se hace es que al nombre de una variable se le asigna un valor, tal como es el ejemplo de INVESTIGACION con 1, entonces, cuando se escriba INVESTIGACION, C++ automáticamente reemplazará ese valor con el de 1.
 
