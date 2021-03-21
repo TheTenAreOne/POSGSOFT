@@ -30,7 +30,6 @@ class criterioEvaluacion{
         string getTitulo();
         string getObservacionJurado1();
         string getObservacionJurado2();
-        float getCalificacionCriterio();
         float getPorcentajePonderacion();       
 };
 
