@@ -16,12 +16,6 @@ enum roles{
     JURADO1, JURADO2, DIRECTOR, CODIRECTOR
 };
 
-// Enum para la identificación del tipo de los jurados participantes en el acta.
-
-enum tipoUniversidad{
-    INTERNO = true, EXTERNO = false
-};
-
 // Enum para la identificación de la modalidad del acta.
 
 enum modalidad{

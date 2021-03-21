@@ -230,22 +230,52 @@ int App::verificarPersona( int idPersona, int idActa ){
 }
 
 void App::agregarPersona( ){
+
     string nombre;
-    bool tipoUniversidad;
 
-    cout << "Nombre: " << endl;
-    cin >> nombre;
+    int tipoUniversidadEntero = 0;
 
-    cout << "Interno o externo a la universidad: " << endl;
-    cout << "[1:Interno]|[2:Externo]" << endl;
-    cin >> tipoUniversidad;
+    int tipoUniversidad;
+
+    string tipoUniversidadString;
+
+    cin.ignore(100, '\n');
+
+    cout << "Nombre: ";
+
+    getline(cin, nombre);
+
+    do{
+
+        cout << "\nQue es esta persona respecto a la universidad? [1: Interno] | [2: Externo]: ";
+
+        cin >> tipoUniversidadEntero;
+
+        if(tipoUniversidadEntero == 1){
+            tipoUniversidadString = "Interno";
+            tipoUniversidad = true;
+            break;
+        }
+
+        else if(tipoUniversidadEntero == 2){
+            tipoUniversidadString = "Externo";
+            tipoUniversidad = false;
+            break;
+        }
+
+        else{
+            cout << "\nEl valor ingresado no es valido, por favor, intentalo de nuevo." << endl;
+        }
+
+    }while(tipoUniversidadEntero);
+
+    //Hago uso de malas prácticas (break) dentro de este while, debido a que nunca logré hacerlo funcionar bien poniendo la condición como debería ser.
 
     Persona newPersona( nombre, idPersonas++, tipoUniversidad );
     this->personas.push_back( newPersona );
 
-    cout << nombre << "[" << tipoUniversidad << "] agregado." << endl;
-    
-    return;
+    cout << "\n" << nombre << " [" << tipoUniversidadString << "] agregado con exito." << endl;
+
 }
 
 void App::agregarObservacionJurado1( int indexActa, int idCriterio, string observacionJurado1 ){
