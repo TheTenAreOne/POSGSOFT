@@ -69,3 +69,22 @@ float criterioEvaluacion::getCalificacionCriterio(){
     return this->calificacionCriterio = ( ( this->calificacionJurado1 + this->calificacionJurado2 ) / 2 ) * ( this->porcentajePonderacion / 100 );
 
 }
+
+string criterioEvaluacion::getIdCriterio(){
+    return this->idCriterio;
+}
+string criterioEvaluacion::getTitulo(){
+    return this->titulo;
+}
+string criterioEvaluacion::getObservacionJurado1(){
+    return this->observacionJurado1;
+}
+string criterioEvaluacion::getObservacionJurado2(){
+    return this->observacionJurado2;
+    }
+float criterioEvaluacion::getCalificacionCriterio(){
+    return calificacionCriterio;
+}
+float criterioEvaluacion::getPorcentajePonderacion(){
+    return porcentajePonderacion;
+}

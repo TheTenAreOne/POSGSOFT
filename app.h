@@ -5,6 +5,7 @@
 #include "acta.h"
 #include "criterioEvaluacion.h"
 #include <vector>
+#include <fstream>
 using std::string;
 using std::vector;
 
@@ -69,6 +70,7 @@ class App{
         void calcularNotaFinal( int indexActas );
         void cerrarActa( int indexActa);
         void verJuradosIE( bool IE);//IE : Interno Externo
+        void imprimirATxt( int indexActa );
 };
 
 #endif

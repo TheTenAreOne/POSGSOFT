@@ -652,3 +652,32 @@ void App::agregarObservacionesAdicionalesActa( int indexActa, string observacion
     this->actas[indexActa].agregarObservacionAdicional( string observacion );
     return;
 }
+
+void App::imprimirATxt( int indexActa ){
+    string fileName;
+    int i;
+    cout << "nombre del archivo: ";
+    cin >> fileName;
+    ofstream archivoActa(fileName);
+
+    archivoActa << this->actas[ indexActa ].getNumero() << "               " << this->actas[ indexActa ].getFecha() << endl;
+    archivoActa << "               ACTA DE EVALUACIÓN DE TRABAJO DE GRADO" << endl;
+    archivoActa << "               "  << this->actas[ indexActa ].getNombreTrabajo() << endl;
+    archivoActa << "Autor: " << this->actas[ indexActa ].getAutor();
+    archivoActa << "Periodo: " << this->actas[ indexActa ].getPeriodo() << endl;
+    archivoActa << "Director: " << this->actas[ indexActa ].getDirector().getNombre() << endl;
+    archivoActa << "Co-director: " << this->actas[ indexActa ].getCoDirector().getNombre() << endl;
+    archivoActa << "Jurado 1: " << this->actas[ indexActa ].getJurado1().getNombre() << endl;
+    archivoActa << "Jurado 2: " << this->actas[ indexActa ].getJurado2().getNombre() << endl;
+
+    for( i = 0; i < this->actas[ indexActa ].criteriosEvaluacion.size(); i++ ){
+        archivoActa << this->actas[ indexActa ].criteriosEvaluacion[i].getIdCriterio() << "  " << this->actas[ indexActa ].criteriosEvaluacion[i].titulo() << endl;
+        archivoActa << "Calificación parcial: " << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionCriterio() << "               " << this->actas[ indexActa ].criteriosEvaluacion[i].getPorcentajePonderacion() << "%" << endl;
+        archivoActa << "Observaciones: " << this->actas[ indexActa ].criteriosEvaluacion[i].getObservacionJurado1() << endl;
+        archivoActa << this->actas[ indexActa ].criteriosEvaluacion[i].getObservacionJurado2() << endl;
+        archivoActa << "___________________________________________________________" << endl;
+        archivoActa << "___________________________________________________________" << endl;
+    }
+    cout << "Archivo creado con exito." << endl;
+    return;
+}
