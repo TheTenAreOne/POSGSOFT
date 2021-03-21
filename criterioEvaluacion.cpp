@@ -33,12 +33,6 @@ void criterioEvaluacion::borrarObservacionJurado2( ){
     this->observacionJurado2 = "";
 }
 
-void criterioEvaluacion::agregarObservacionesAdicionales( string observacionesAdicionales ){
-
-    this->observacionesAdicionales = observacionesAdicionales;
-
-}
-
 void criterioEvaluacion::agregarCalificacionJurado1( float calificacionJurado1 ){
 
     this->calificacionJurado1 = calificacionJurado1;
