@@ -2,6 +2,8 @@
 #include "acta.h"
 #include "criterioEvaluacion.h"
 
+Acta::Acta(){}
+
 Acta::Acta( string autor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha ){
 
     this->autor = autor;
@@ -33,6 +35,7 @@ Acta::Acta( string autor, string periodo, Persona director, Persona coDirector, 
     this->criteriosEvaluacion.push_back(criterio7);
     this->criteriosEvaluacion.push_back(criterio8);
 }
+
 
 int Acta::getId( ){
     return this->id;

@@ -11,7 +11,12 @@ using std::endl;
 
 // Constructor por defecto de la clase App que inicializa todo el programa en sí.
 
-App::App(){}
+App::App(){
+
+    Persona NA( "NA", -1, false );
+
+    this->personas.push_back(NA);
+}
 
 // Menú para muestra y selección de las diferentes opciones dentro del programa.
 
@@ -94,23 +99,21 @@ void App::agregarPersona(){
 
             cin >> tipoUniversidadEntero;
 
-            if(tipoUniversidadEntero == 1){
+            if(tipoUniversidadEntero == INTERNO){
                 tipoUniversidadString = "Interno";
                 tipoUniversidad = true;
-                break;
             }
 
-            else if(tipoUniversidadEntero == 2){
+            else if(tipoUniversidadEntero == EXTERNO){
                 tipoUniversidadString = "Externo";
                 tipoUniversidad = false;
-                break;
             }
 
             else{
                 cout << "\nEl valor ingresado no es valido, por favor, intentalo de nuevo." << endl;
             }
 
-        }while(tipoUniversidadEntero);
+        }while(tipoUniversidadEntero == 1 || tipoUniversidadEntero == 2);
 
         //Hago uso de malas prácticas (break) dentro de este while, debido a que nunca logré hacerlo funcionar bien poniendo la condición como debería ser.
 
@@ -199,13 +202,13 @@ string App::generarFecha(){
 
 // FUNCION ON HOLD
 
-/*
+
 string App::generarNumeroActa( string periodo){
     string numero;
     numero = this->idActas++ + "-" + periodo;
     return numero;
 }
-*/
+
 
 void App::mostrarPersonas(){
 
@@ -213,7 +216,7 @@ void App::mostrarPersonas(){
 
     int indexPersonas;
 
-    if( personas.size() == 0){
+    if( personas.size() == 1){
 
         cout << "No hay personas disponibles para mostrar." << endl;
 
@@ -235,7 +238,7 @@ void App::mostrarPersonas(){
 
 void App::crearActa(){
 
-    if(personas.size() == 0){
+    if(personas.size() == 1){
 
         cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
         cout << "\n             Error              " << endl;
@@ -291,7 +294,7 @@ void App::crearActa(){
             //SE REQUIERE DE UNA U OTRA MANERA DECLARAR UN CODIRECTOR O EL CONSTRUCTOR DE ABAJO SE ROMPE POR COMPLETO
 
             else if(existenciaCoDirector == 2){
-                codirector = -1
+                codirector = 0;
                 break;
             }
 
@@ -311,11 +314,11 @@ void App::crearActa(){
 
             cin >> modalidad;
 
-            if(modalidad == 1){
+            if(modalidad == INVESTIGACION){
                 break;
             }
 
-            else if(modalidad == 2){
+            else if(modalidad == INDUSTRIA){
                 break;
             }
 
@@ -336,16 +339,18 @@ void App::crearActa(){
         cin >> jurado2;
         jurado2--;
 
-        //numero = generarNumeroActa( periodo );
+        numero = generarNumeroActa( periodo );
         generarFecha();
 
-        Acta nuevaActa( autor, periodo, this->personas[ director ], this->personas[ codirector ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
+        if(codirector != 0){
+            Acta nuevaActa( autor, periodo, this->personas[ director ], this->personas[ codirector ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
+            this->actas.push_back( nuevaActa );
+        }else{
+            Acta nuevaActa( autor, periodo, this->personas[ director ], this->personas[ 0 ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
+            this->actas.push_back( nuevaActa );
+        }
 
-        this->actas.push_back( nuevaActa );
-
-        //DONDE ESTA EL "HA" DEBERIA IR LA FUNCION NUMERO QUE ESTA DANDO PROBLEMAS
-
-        cout << "\nActa " << "ha" << " sido creada con exito." << endl;
+        cout << "\nActa " << numero << " sido creada con exito." << endl;
 
     }
 
