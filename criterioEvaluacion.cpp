@@ -82,9 +82,6 @@ string criterioEvaluacion::getObservacionJurado1(){
 string criterioEvaluacion::getObservacionJurado2(){
     return this->observacionJurado2;
     }
-float criterioEvaluacion::getCalificacionCriterio(){
-    return calificacionCriterio;
-}
 float criterioEvaluacion::getPorcentajePonderacion(){
     return porcentajePonderacion;
 }
