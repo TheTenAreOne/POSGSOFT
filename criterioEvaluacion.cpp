@@ -1,12 +1,11 @@
 #include "criterioEvaluacion.h"
 #include "string"
 
-criterioEvaluacion::criterioEvaluacion( string idCriterio, string titulo, string observacionJurado1, string observacionJurado2, string ObservacionesAdicionales, float calificacionJurado1, float calificacionJurado2, float porcentajePonderacion, float calificacionCriterio ){
+criterioEvaluacion::criterioEvaluacion( string idCriterio, string titulo, string observacionJurado1, string observacionJurado2, float calificacionJurado1, float calificacionJurado2, float porcentajePonderacion, float calificacionCriterio ){
     this->idCriterio = idCriterio;
     this->titulo = titulo;
     this->observacionJurado1 = observacionJurado1;
     this->observacionJurado2 = observacionJurado2;
-    this->observacionesAdicionales = observacionesAdicionales;
     this->calificacionJurado1 = calificacionJurado1;
     this->calificacionJurado2 = calificacionJurado1;
     this->porcentajePonderacion = porcentajePonderacion;
