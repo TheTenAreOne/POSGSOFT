@@ -119,7 +119,7 @@ void App::agregarPersona(){
                 cout << "\nEl valor ingresado no es valido, por favor, intentalo de nuevo." << endl;
             }
 
-        }while(tipoUniversidadEntero);
+        }while(true);
 
         //Hago uso de malas prácticas (break) dentro de este while, debido a que nunca logré hacerlo funcionar bien poniendo la condición como debería ser.
 
@@ -291,11 +291,16 @@ void App::crearActa(){
 
             cout << "\nExiste un Co Director? [1: Si] [2: No]: ";
 
-            cin >> existenciaCoDirector;
+                cin >> existenciaCoDirector;
 
             if(existenciaCoDirector == 1){
                 cout << "\nIngrese el numero de la persona para asignarle el rol de Co Director: ";
-                cin >> codirector;
+                do{
+                    cin >> codirector;
+                    if( codirector == director ){
+                        cout << "\nEl co-director no puede ser la misma pesona que el director...";
+                    }
+                }while( codirector == director );
                 break;
             }
 
@@ -338,13 +343,21 @@ void App::crearActa(){
 
         cout << "\nPersonas disponibles:";
         mostrarPersonas();
+        do{
+            cout << "\n\nIngrese el numero de la persona para signarle el rol de Jurado #1: ";
+            cin >> jurado1;
+            if( jurado1 == codirector || jurado1 == director ){
+                cout << "\nEl jurado 1 no puede ser la misma persona que el co-director o director...";
+            }
+        }while( jurado1 == codirector || jurado1 == director );
 
-        cout << "\n\nIngrese el numero de la persona para signarle el rol de Jurado #1: ";
-        cin >> jurado1;
-
-        cout << "\nIngrese el numero de la persona para signarle el rol de Jurado #2: ";
-        cin >> jurado2;
-
+        do{
+            cout << "\nIngrese el numero de la persona para signarle el rol de Jurado #2: ";
+            cin >> jurado2;
+            if( jurado1 == codirector || jurado1 == director || jurado2 == jurado1 ){
+                cout << "\nEl jurado 2 no puede ser la misma persona que el co-director, director o jurado 1...";
+            }
+        }while( jurado2 == codirector || jurado2 == director || jurado2 == jurado1 );
         numero = generarNumeroActa( periodo );
         fecha = generarFecha();
 
@@ -663,7 +676,13 @@ void App::imprimirATxt( int indexActa ){
     int i;
     cout << "nombre del archivo: ";
     cin >> fileName;
+
+    if( fileName[ fileName.size() - 4 ] != "." ){
+        fileName += ".txt"
+    }
+
     ofstream archivoActa(fileName);
+
 
     archivoActa << this->actas[ indexActa ].getNumero() << "               " << this->actas[ indexActa ].getFecha() << endl;
     archivoActa << "               ACTA DE EVALUACIÓN DE TRABAJO DE GRADO" << endl;
