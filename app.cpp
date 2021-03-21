@@ -294,11 +294,11 @@ void App::crearActa(){
                 cin >> existenciaCoDirector;
 
             if(existenciaCoDirector == 1){
-                cout << "\nIngrese el numero de la persona para asignarle el rol de Co Director: ";
                 do{
+                    cout << "\nIngrese el numero de la persona para asignarle el rol de Co Director: ";
                     cin >> codirector;
                     if( codirector == director ){
-                        cout << "\nEl co-director no puede ser la misma pesona que el director...";
+                        cout << "\nEl co-director no puede ser la misma pesona que el director..." << endl;
                     }
                 }while( codirector == director );
                 break;
@@ -689,9 +689,6 @@ void App::imprimirATxt( int indexActa ){
     cout << "nombre del archivo: ";
     cin >> fileName;
 
-    if( fileName[ fileName.size() - 4 ] != "." ){
-        fileName += ".txt"
-    }
 
     ofstream archivoActa(fileName);
 
