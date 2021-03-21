@@ -18,7 +18,6 @@ enum{
 
 class Acta{
     private:
-        int id;
         string numero;
         string fecha;
         string autor;
@@ -47,10 +46,9 @@ class Acta{
     public:
         Acta();
         vector<criterioEvaluacion> criteriosEvaluacion;
-        Acta( string autor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha );
+        Acta( string nombreDelTrabajo, string autor, string idAutor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha );
 
         //=======Getters======
-        int getId( );
         Persona getJurado1( );
         Persona getJurado2( );
         Persona getDirector( );

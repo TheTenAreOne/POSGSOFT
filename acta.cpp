@@ -4,8 +4,9 @@
 
 Acta::Acta(){}
 
-Acta::Acta( string autor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha ){
+Acta::Acta( string nombreTrabajo, string autor, string idAutor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha ){
 
+    this->nombreTrabajo = nombreTrabajo;
     this->autor = autor;
     this->periodo = periodo;
     this->director = director;
@@ -17,7 +18,8 @@ Acta::Acta( string autor, string periodo, Persona director, Persona coDirector, 
     this->fecha = fecha;
     this->cerrada = ABIERTA;
     this->observacionesAdicionales = "";
-    
+
+        
     criterioEvaluacion criterio1( "1", "Desarrollo y profundidad en el tratamiento del tema", "", "", 0.0, 0.0, 20, 0.0);
     criterioEvaluacion criterio2( "2", "Desafío académico y científico del tema", "", "", 0.0, 0.0, 15, 0.0);
     criterioEvaluacion criterio3( "3", "Cumplimiento de los objetivos propuestos", "", "", 0.0, 0.0, 10, 0.0);
@@ -35,11 +37,6 @@ Acta::Acta( string autor, string periodo, Persona director, Persona coDirector, 
     this->criteriosEvaluacion.push_back(criterio6);
     this->criteriosEvaluacion.push_back(criterio7);
     this->criteriosEvaluacion.push_back(criterio8);
-}
-
-
-int Acta::getId( ){
-    return this->id;
 }
 
 Persona Acta::getJurado1( ){

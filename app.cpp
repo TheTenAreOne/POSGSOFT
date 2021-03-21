@@ -13,6 +13,10 @@ using std::endl;
 
 App::App(){
 
+    this->idPersonas = 1;
+
+    this->idActas = 1;
+
     Persona NA( "NA", -1, false );
 
     this->personas.push_back(NA);
@@ -102,18 +106,20 @@ void App::agregarPersona(){
             if(tipoUniversidadEntero == INTERNO){
                 tipoUniversidadString = "Interno";
                 tipoUniversidad = true;
+                break;
             }
 
             else if(tipoUniversidadEntero == EXTERNO){
                 tipoUniversidadString = "Externo";
                 tipoUniversidad = false;
+                break;
             }
 
             else{
                 cout << "\nEl valor ingresado no es valido, por favor, intentalo de nuevo." << endl;
             }
 
-        }while(tipoUniversidadEntero == 1 || tipoUniversidadEntero == 2);
+        }while(tipoUniversidadEntero);
 
         //Hago uso de malas prácticas (break) dentro de este while, debido a que nunca logré hacerlo funcionar bien poniendo la condición como debería ser.
 
@@ -205,7 +211,7 @@ string App::generarFecha(){
 
 string App::generarNumeroActa( string periodo){
     string numero;
-    numero = this->idActas++ + "-" + periodo;
+    numero = std::to_string(this->idActas++) + "-" + periodo;
     return numero;
 }
 
@@ -224,9 +230,9 @@ void App::mostrarPersonas(){
 
     else{
 
-        for( i = 0; i < personas.size(); i++ ){
+        for( i = 1; i < personas.size(); i++ ){
 
-            cout <<" [" << i+1 << "] " << personas[ i ].getNombre();
+            cout <<" [" << i << "] " << personas[ i ].getNombre();
 
         }
 
@@ -249,9 +255,9 @@ void App::crearActa(){
 
     else{
         
-        string nombreDelTrabajo, autor, periodo, numero, enfasis, fecha;
+        string nombreDelTrabajo, autor, periodo, numero, enfasis, fecha, idAutor;
 
-        int director, codirector, jurado1, jurado2, modalidad, existenciaCoDirector;
+        int director, codirector = 0, jurado1, jurado2, modalidad, existenciaCoDirector;
 
         cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
         cout << "\n          Creando acta          " << endl;
@@ -266,6 +272,10 @@ void App::crearActa(){
         cout << "\nAutor: ";
         getline(cin, autor);
 
+        cout << "\nIngrese el ID del autor: ";
+
+        getline(cin, idAutor);
+
         cout << "\nPeriodo: ";
         cin >> periodo;
 
@@ -276,7 +286,6 @@ void App::crearActa(){
 
         cin >> director;
 
-        director--;
 
         while(existenciaCoDirector){
 
@@ -287,7 +296,6 @@ void App::crearActa(){
             if(existenciaCoDirector == 1){
                 cout << "\nIngrese el numero de la persona para asignarle el rol de Co Director: ";
                 cin >> codirector;
-                codirector--;
                 break;
             }
 
@@ -333,24 +341,22 @@ void App::crearActa(){
 
         cout << "\n\nIngrese el numero de la persona para signarle el rol de Jurado #1: ";
         cin >> jurado1;
-        jurado1--;
 
         cout << "\nIngrese el numero de la persona para signarle el rol de Jurado #2: ";
         cin >> jurado2;
-        jurado2--;
 
         numero = generarNumeroActa( periodo );
-        generarFecha();
+        fecha = generarFecha();
 
         if(codirector != 0){
-            Acta nuevaActa( autor, periodo, this->personas[ director ], this->personas[ codirector ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
+            Acta nuevaActa( nombreDelTrabajo, autor, idAutor, periodo, this->personas[ director ], this->personas[ codirector ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
             this->actas.push_back( nuevaActa );
         }else{
-            Acta nuevaActa( autor, periodo, this->personas[ director ], this->personas[ 0 ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
+            Acta nuevaActa( nombreDelTrabajo, autor, idAutor, periodo, this->personas[ director ], this->personas[ 0 ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
             this->actas.push_back( nuevaActa );
         }
 
-        cout << "\nActa " << numero << " sido creada con exito." << endl;
+        cout << "\nActa " << numero << " ha sido creada con exito." << endl;
 
     }
 
@@ -466,7 +472,6 @@ void App::imprimirActa( int indexActa ){
     cout << this->actas[ indexActa ].getAutor() << endl;    
     cout << this->actas[ indexActa ].getModalidad() << endl;
     // cout << this->actas[ indexActa ].getNumero() << endl;
-    cout << this->actas[ indexActa ].getId() << endl;
     cout << this->actas[ indexActa ].getJurado1().getNombre() << endl;
     cout << this->actas[ indexActa ].getJurado2().getNombre() << endl;
     cout << this->actas[ indexActa ].getDirector().getNombre() << endl;
@@ -611,7 +616,7 @@ void App::cerrarActa( int indexActa ){
 
 
 //Ver jurados internos y externos
-//IE : Interno
+//IE : InternoExterno
 void App::verJuradosIE( bool IE ){
     int i, j;
     vector<Persona> juradosRepetidos;

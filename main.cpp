@@ -7,6 +7,4 @@ int main() {
 
    App.menu();
 
-   return 0;
-
 }
