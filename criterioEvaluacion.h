@@ -9,7 +9,6 @@ class criterioEvaluacion{
         string titulo;
         string observacionJurado1;
         string observacionJurado2;
-        string observacionesAdicionales;
         float calificacionJurado1;
         float calificacionJurado2;
         float calificacionCriterio;

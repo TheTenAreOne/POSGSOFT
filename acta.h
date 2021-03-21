@@ -23,6 +23,7 @@ class Acta{
         string fecha;
         string autor;
         string nombreTrabajo;
+        string observacionesAdicionales;
 
         // Modalidad deberia ser cambiado por string tipoTrabajo, de otra manera es inutil hacer uso de enums en esta parte
 
@@ -65,6 +66,7 @@ class Acta{
         void setNotaFinal( float nota );
         void setAprobada( bool aprobada );
         void setCerrada( bool cerrada );
+        void agregarObservacionAdicional( string observacion );
         
 
 };
