@@ -23,16 +23,6 @@ void criterioEvaluacion::agregarObservacionJurado2( string observacionJurado2 ){
 
 }
 
-void criterioEvaluacion::borrarObservacionJurado1( ){
-
-    this->observacionJurado1 = "";
-}
-
-void criterioEvaluacion::borrarObservacionJurado2( ){
-
-    this->observacionJurado2 = "";
-}
-
 void criterioEvaluacion::agregarCalificacionJurado1( float calificacionJurado1 ){
 
     this->calificacionJurado1 = calificacionJurado1;
@@ -41,19 +31,7 @@ void criterioEvaluacion::agregarCalificacionJurado1( float calificacionJurado1 )
 
 void criterioEvaluacion::agregarCalificacionJurado2( float calificacionJurado2 ){
 
-    this->calificacionJurado1 = calificacionJurado2;
-
-}
-
-void criterioEvaluacion::borrarCalificacionJurado1(){
-
-    this->calificacionJurado1 = 0.0;
-
-}
-
-void criterioEvaluacion::borrarCalificacionJurado2(){
-
-    this->calificacionJurado2 = 0.0;
+    this->calificacionJurado2 = calificacionJurado2;
 
 }
 
@@ -81,7 +59,7 @@ string criterioEvaluacion::getObservacionJurado1(){
 }
 string criterioEvaluacion::getObservacionJurado2(){
     return this->observacionJurado2;
-    }
+}
 
 float criterioEvaluacion::getPorcentajePonderacion(){
     return porcentajePonderacion;

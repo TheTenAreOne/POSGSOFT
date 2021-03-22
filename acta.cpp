@@ -4,7 +4,7 @@
 
 Acta::Acta(){}
 
-Acta::Acta( string nombreTrabajo, string autor, string idAutor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha, string numero, string observacionesAdicionales ){
+Acta::Acta( string nombreTrabajo, string autor, string idAutor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha, string numero, string observacionesAdicionales, float nota ){
 
     this->nombreTrabajo = nombreTrabajo;
     this->autor = autor;
@@ -19,6 +19,7 @@ Acta::Acta( string nombreTrabajo, string autor, string idAutor, string periodo, 
     this->numero = numero;
     this->cerrada = ABIERTA;
     this->observacionesAdicionales = "";
+    this->nota = nota;
 
         
     criterioEvaluacion criterio1( "1", "Desarrollo y profundidad en el tratamiento del tema", "", "", 0.0, 0.0, 20, 0.0);
@@ -66,6 +67,10 @@ int Acta::getModalidad( ){
 
 string Acta::getAutor(){
     return this->autor;
+}
+
+float Acta::getNotaFinal(){
+    return this->nota;
 }
 
 string Acta::getPeriodo(){

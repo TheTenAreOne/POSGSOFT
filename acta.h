@@ -37,7 +37,7 @@ class Acta{
     public:
         Acta();
         vector<criterioEvaluacion> criteriosEvaluacion;
-        Acta( string nombreDelTrabajo, string autor, string idAutor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha, string numero, string observacionesAdicionales );
+        Acta( string nombreDelTrabajo, string autor, string idAutor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha, string numero, string observacionesAdicionales, float nota );
 
 
         Persona getJurado1( );
@@ -54,6 +54,7 @@ class Acta{
         string getPeriodo();
         int getNota();
         void setNotaFinal( float nota );
+        float getNotaFinal();
         void setAprobada( bool aprobada );
         void setCerrada( bool cerrada );
         void agregarObservacionAdicional( string observacion );
