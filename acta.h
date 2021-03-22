@@ -23,16 +23,9 @@ class Acta{
         string autor;
         string nombreTrabajo;
         string observacionesAdicionales;
-
-        // Modalidad deberia ser cambiado por string tipoTrabajo, de otra manera es inutil hacer uso de enums en esta parte
-
         int modalidad;
         string periodo;
         Persona director;
-
-
-        // Siempre existira un director, mas no siempre un CoDirector, por lo tanto; habria que preguntar si en cada acta en especifico este se encuentra presente
-
         Persona coDirector;
         string enfasis;
         Persona jurado1;
@@ -41,14 +34,12 @@ class Acta{
         bool cerrada;
         bool aprobada;
 
-        //AÑADI ESTO DE APROBADA O REPROBADA // DANIEL LEEME // DANIEL LEEME
-        
     public:
         Acta();
         vector<criterioEvaluacion> criteriosEvaluacion;
-        Acta( string nombreDelTrabajo, string autor, string idAutor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha );
+        Acta( string nombreDelTrabajo, string autor, string idAutor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha, string numero, string observacionesAdicionales );
 
-        //=======Getters======
+
         Persona getJurado1( );
         Persona getJurado2( );
         Persona getDirector( );
@@ -56,6 +47,7 @@ class Acta{
         bool estadoCerrada( );
         int getModalidad( );
         string getNumero();
+        void setNumero( string numero);
         string getFecha();
         string getAutor();
         string getNombreTrabajo();
@@ -65,8 +57,8 @@ class Acta{
         void setAprobada( bool aprobada );
         void setCerrada( bool cerrada );
         void agregarObservacionAdicional( string observacion );
+        string getObservacionesAdicionales();
         
-
 };
 
 #endif

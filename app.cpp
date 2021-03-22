@@ -9,7 +9,6 @@ using std::cin;
 using std::string;
 using std::endl;
 
-// Constructor por defecto de la clase App que inicializa todo el programa en sí.
 
 App::App(){
 
@@ -22,56 +21,133 @@ App::App(){
     this->personas.push_back(NA);
 }
 
-// Menú para muestra y selección de las diferentes opciones dentro del programa.
+
 
 void App::menu( ){
 
-    int opc;
+    int opcion;
 
     do{
 
         cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\n Bienvenido al sistema de actas " << endl;
+        cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
         cout << "\n 1: Agregar Personas" << endl;
         cout << " 2: Crear Acta" << endl;
-        cout << " 3: Agregar observacion" << endl;
-        cout << " 4: Agregar observaciones adicionales" << endl;
-        cout << " 4: Cerrar acta" << endl;
-        cout << " 5: Salir" << endl;
+        cout << " 3: Modificar Acta" << endl;
+        cout << " 4: Imprimir Acta" << endl;
+        cout << " 5: Agregar observaciones adicionales" << endl;
+        cout << " 6: Cerrar acta" << endl;
+        cout << " 7: Salir" << endl;
         cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
         cout << "\nSeleccione la opcion que desea realizar: ";
-        cin >> opc;
+        cin >> opcion;
 
-        switch ( opc ){
+        switch ( opcion ){
 
-        case 1:
+            case 1:
 
-            this->agregarPersona();
-            break;
+                this->agregarPersona();
+                break;
 
-        case 2:
+            case 2:
 
-            this->crearActa();
-            break;
+                this->crearActa();
+                break;
 
-        case 3:
+            case 3:
 
-            this->imprimirActa(0);
+                int opcionMenuModificar;
 
-            break;
+                do{
 
-        case 4:
+                    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+                    cout << "\nBienvenido al sistema de modificacion de actas " << endl;
+                    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+                    cout << "\n 1: Modificar calificacion del jurado #1" << endl;
+                    cout << " 2: Modificar calificacion del jurado #2" << endl;
+                    cout << " 3: Modificar observaciones jurado #1" << endl;
+                    cout << " 4: Modificar observaciones jurado #2" << endl;
+                    cout << " 5: Volver al menu principal" << endl;
+                    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+                    cout << "\nSeleccione la opcion que desea realizar: ";
+                    cin >> opcionMenuModificar;
 
-            break;
+                    switch ( opcionMenuModificar ){
 
-        default:
+                        case 1:
 
-            break;
+                            agregarCalificacionJurado1();
 
-    }
+                            break;
 
-    }while( opc != 5 );
+                        case 2:
+
+                            agregarCalificacionJurado2();
+
+                            break;
+
+                        case 3:
+
+                            agregarObservacionJurado1();
+
+                            break;
+
+                        case 4:
+
+                            agregarObservacionJurado2();
+
+                            break;
+
+                        default:
+
+                            break;
+        
+                    }
+
+                }while( opcionMenuModificar != 5 );
+
+                break;
+
+            case 4:
+
+                int indexActa;
+
+                mostrarActasAC( false );
+
+                cout << "\nIngrese el numero del acta en la que desea realizar modificaciones: ";
+
+                cin >> indexActa;
+
+                indexActa--;
+
+                imprimirActa(indexActa);
+
+                break;
+
+            case 5:
+
+                break;
+
+            case 6:
+
+                break;
+                
+            case 7:
+
+                break;
+
+            default:
+
+                break;
+
+        }
+
+    }while( opcion != 7 );
 
 }
+
+
 
 void App::agregarPersona(){
 
@@ -120,8 +196,6 @@ void App::agregarPersona(){
             }
 
         }while(true);
-
-        //Hago uso de malas prácticas (break) dentro de este while, debido a que nunca logré hacerlo funcionar bien poniendo la condición como debería ser.
 
         Persona newPersona( nombre, idPersonas++, tipoUniversidad );
         this->personas.push_back( newPersona );
@@ -255,7 +329,7 @@ void App::crearActa(){
 
     else{
         
-        string nombreDelTrabajo, autor, periodo, numero, enfasis, fecha, idAutor;
+        string nombreDelTrabajo, autor, periodo, numero, enfasis, fecha, idAutor, observacionesAdicionales;
 
         int director, codirector = 0, jurado1, jurado2, modalidad, existenciaCoDirector;
 
@@ -277,7 +351,7 @@ void App::crearActa(){
         getline(cin, idAutor);
 
         cout << "\nPeriodo: ";
-        cin >> periodo;
+        getline(cin, periodo);
 
         cout << "\nPersonas disponibles:";
         mostrarPersonas();
@@ -354,7 +428,7 @@ void App::crearActa(){
         do{
             cout << "\nIngrese el numero de la persona para signarle el rol de Jurado #2: ";
             cin >> jurado2;
-            if( jurado1 == codirector || jurado1 == director || jurado2 == jurado1 ){
+            if( jurado2 == codirector || jurado2 == director || jurado2 == jurado1 ){
                 cout << "\nEl jurado 2 no puede ser la misma persona que el co-director, director o jurado 1...";
             }
         }while( jurado2 == codirector || jurado2 == director || jurado2 == jurado1 );
@@ -362,10 +436,10 @@ void App::crearActa(){
         fecha = generarFecha();
 
         if(codirector != 0){
-            Acta nuevaActa( nombreDelTrabajo, autor, idAutor, periodo, this->personas[ director ], this->personas[ codirector ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
+            Acta nuevaActa( nombreDelTrabajo, autor, idAutor, periodo, this->personas[ director ], this->personas[ codirector ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha, numero, observacionesAdicionales );
             this->actas.push_back( nuevaActa );
         }else{
-            Acta nuevaActa( nombreDelTrabajo, autor, idAutor, periodo, this->personas[ director ], this->personas[ 0 ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha );
+            Acta nuevaActa( nombreDelTrabajo, autor, idAutor, periodo, this->personas[ director ], this->personas[ 0 ], enfasis, modalidad, this->personas[ jurado1 ], this->personas[ jurado2 ], fecha, numero, observacionesAdicionales );
             this->actas.push_back( nuevaActa );
         }
 
@@ -389,60 +463,175 @@ int App::verificarPersona( int idPersona, int idActa ){
     return -1;
 }
 
-void App::agregarObservacionJurado1( int indexActa, int idCriterio, string observacionJurado1 ){
+void App::agregarObservacionJurado1(){
 
-    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].agregarObservacionJurado1( observacionJurado1 );
-    cout << "Observacion agregada." << endl;
-    return;
+    int indexActa, indexCriterioEvaluacion;
+
+    string observacionJurado1;
+
+    mostrarActasAC( false );
+
+    cout << "\nIngrese el numero del acta en la que desea realizar modificaciones: ";
+
+    cin >> indexActa;
+
+    indexActa--;
+
+    for(int i = 0; i < this->actas[ indexActa ].criteriosEvaluacion.size(); i++){
+
+        cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getIdCriterio() << ". " << this->actas[ indexActa ].criteriosEvaluacion[i].getTitulo() << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionJurado1() << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionJurado2() << endl;
+        cout << "\nPonderacion: " << this->actas[ indexActa ].criteriosEvaluacion[i].getPorcentajePonderacion() << "%" << endl;
+
+    }
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "\nIngrese el numero del criterio de evaluacion en el que desea realizar modificar la observacion del jurado #1: ";
+
+    cin >> indexCriterioEvaluacion;
+
+    indexCriterioEvaluacion--;
+
+    cout << "\nIngrese la observacion que desea ingresar para el criterio #" << this->actas[ indexActa ].criteriosEvaluacion[ indexCriterioEvaluacion ].getIdCriterio() << ": ";
+
+    cin.ignore(100, '\n');
+
+    getline(cin, observacionJurado1);
+
+    this->actas[ indexActa ].criteriosEvaluacion[ indexCriterioEvaluacion ].agregarObservacionJurado1( observacionJurado1 );
+
+    cout << "\nObservacion agregada con exito al criterio #" << this->actas[ indexActa ].criteriosEvaluacion[ indexCriterioEvaluacion ].getIdCriterio() << ": " << endl;
+
 }
 
-void App::agregarObservacionJurado2( int indexActa, int idCriterio, string observacionJurado2 ){
+void App::agregarObservacionJurado2(){
 
-    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].agregarObservacionJurado2( observacionJurado2 );
-    cout << "Observacion agregada." << endl;
-    return;
+    int indexActa, indexCriterioEvaluacion;
+
+    string observacionJurado2;
+
+    mostrarActasAC( false );
+
+    cout << "\nIngrese el numero del acta en la que desea realizar modificaciones: ";
+
+    cin >> indexActa;
+
+    indexActa--;
+
+    for(int i = 0; i < this->actas[ indexActa ].criteriosEvaluacion.size(); i++){
+
+        cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getIdCriterio() << ". " << this->actas[ indexActa ].criteriosEvaluacion[i].getTitulo() << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionJurado1() << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionJurado2() << endl;
+        cout << "\nPonderacion: " << this->actas[ indexActa ].criteriosEvaluacion[i].getPorcentajePonderacion() << "%" << endl;
+
+    }
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "\nIngrese el numero del criterio de evaluacion en el que desea realizar modificar la observacion del jurado #1: ";
+
+    cin >> indexCriterioEvaluacion;
+
+    indexCriterioEvaluacion--;
+
+    cout << "\nIngrese la observacion que desea ingresar para el criterio #" << this->actas[ indexActa ].criteriosEvaluacion[ indexCriterioEvaluacion ].getIdCriterio() << ": ";
+
+    cin.ignore(100, '\n');
+
+    getline(cin, observacionJurado2);
+
+    this->actas[ indexActa ].criteriosEvaluacion[ indexCriterioEvaluacion ].agregarObservacionJurado2( observacionJurado2 );
+
+    cout << "\nObservacion agregada con exito al criterio #" << this->actas[ indexActa ].criteriosEvaluacion[ indexCriterioEvaluacion ].getIdCriterio() << ": " << endl;
+
 }
 
-void App::borrarObservacionJurado1( int indexActa, int idCriterio ){
+void App::agregarCalificacionJurado1(){
 
-    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].borrarObservacionJurado1( );
-    cout << "Observacion borrada." << endl;
-    return;
+    int indexActa, indexCriterioEvaluacion;
+
+    float calificacionJurado1;
+
+    mostrarActasAC( false );
+
+    cout << "\nIngrese el numero del acta en la que desea realizar modificaciones: ";
+
+    cin >> indexActa;
+
+    indexActa--;
+
+    for(int i = 0; i < this->actas[ indexActa ].criteriosEvaluacion.size(); i++){
+
+        cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getIdCriterio() << ". " << this->actas[ indexActa ].criteriosEvaluacion[i].getTitulo() << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionJurado1() << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionJurado2() << endl;
+        cout << "\nPonderacion: " << this->actas[ indexActa ].criteriosEvaluacion[i].getPorcentajePonderacion() << "%" << endl;
+
+    }
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "\nIngrese el numero del criterio de evaluacion en el que desea realizar modificar la calificacion del jurado #1: ";
+
+    cin >> indexCriterioEvaluacion;
+
+    indexCriterioEvaluacion--;
+
+    cout << "\nIngrese la calificacion que desea ingresar para el criterio #" << this->actas[ indexActa ].criteriosEvaluacion[ indexCriterioEvaluacion ].getIdCriterio() << ": ";
+
+    cin >> calificacionJurado1;
+
+    this->actas[ indexActa ].criteriosEvaluacion[ indexCriterioEvaluacion ].agregarCalificacionJurado1( calificacionJurado1 );
+
+    cout << "\nCalificacion agregada con exito al criterio #" << this->actas[ indexActa ].criteriosEvaluacion[ indexCriterioEvaluacion ].getIdCriterio() << ": " << endl;
+
 }
 
-void App::borrarObservacionJurado2( int indexActa, int idCriterio ){
+void App::agregarCalificacionJurado2(){
+    int indexActa, indexCriterioEvaluacion;
+    
+    float calificacionJurado2;
 
-    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].borrarObservacionJurado1( );
-    cout << "Observacion borrada." << endl;
-    return;
-}
+    mostrarActasAC( false );
 
-void App::agregarCalificacionJurado1( int indexActa, int idCriterio, float calificacion ){
+    cout << "\nIngrese el numero del acta en la que desea realizar modificaciones: ";
 
-    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].agregarCalificacionJurado1( calificacion );
-    cout << "Calificacion agregada." << endl;
-    return;
-}
+    cin >> indexActa;
 
-void App::agregarCalificacionJurado2( int indexActa, int idCriterio, float calificacion ){
+    indexActa--;
 
-    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].agregarCalificacionJurado2( calificacion );
-    cout << "Calificacion agregada." << endl;
-    return;
-}
+    for(int i = 0; i < this->actas[ indexActa ].criteriosEvaluacion.size(); i++){
 
-void App::borrarCalificacionJurado1( int indexActa, int idCriterio ){
+        cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getIdCriterio() << ". " << this->actas[ indexActa ].criteriosEvaluacion[i].getTitulo() << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionJurado1() << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionJurado2() << endl;
+        cout << "\nPonderacion: " << this->actas[ indexActa ].criteriosEvaluacion[i].getPorcentajePonderacion() << "%" << endl;
 
-    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].borrarCalificacionJurado1();
-    cout << "Calificacion borrada." << endl;
-    return;
-}
+    }
 
-void App::borrarCalificacionJurado2( int indexActa, int idCriterio ){
+    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
 
-    this->actas[ indexActa ].criteriosEvaluacion[ idCriterio ].borrarCalificacionJurado2();
-    cout << "Calificacion borrada." << endl;
-    return;
+    cout << "\nIngrese el numero del criterio de evaluacion en el que desea realizar modificar la calificacion del jurado #1: ";
+
+    cin >> indexCriterioEvaluacion;
+
+    indexCriterioEvaluacion--;
+
+    cout << "\nIngrese la calificacion que desea ingresar para el criterio #" << this->actas[ indexActa ].criteriosEvaluacion[ indexCriterioEvaluacion ].getIdCriterio() << ": ";
+
+    cin >> calificacionJurado2;
+
+    this->actas[ indexActa ].criteriosEvaluacion[ indexCriterioEvaluacion ].agregarCalificacionJurado2( calificacionJurado2 );
+
+    cout << "\nCalificacion agregada con exito al criterio #" << this->actas[ indexActa ].criteriosEvaluacion[ indexCriterioEvaluacion ].getIdCriterio() << ": " << endl;
+
 }
 
 int App::identificarRolActa( int idPersona, int indexActa ){
@@ -478,18 +667,80 @@ void App::mostrarActasPorModalidad( int modalidad ){
 }
 
 void App::imprimirActa( int indexActa ){
+
+    string modalidadImprimir;
+
+    string estadoCerrada;
+
     
-    cout << this->actas[ indexActa ].getNombreTrabajo() << endl;
-    cout << this->actas[ indexActa ].getFecha() << endl;
-    cout << this->actas[ indexActa ].getPeriodo() << endl;
-    cout << this->actas[ indexActa ].getAutor() << endl;    
-    cout << this->actas[ indexActa ].getModalidad() << endl;
-    // cout << this->actas[ indexActa ].getNumero() << endl;
-    cout << this->actas[ indexActa ].getJurado1().getNombre() << endl;
-    cout << this->actas[ indexActa ].getJurado2().getNombre() << endl;
-    cout << this->actas[ indexActa ].getDirector().getNombre() << endl;
-    cout << this->actas[ indexActa ].getCoDirector().getNombre() << endl;
-    cout << this->actas[ indexActa ].estadoCerrada() << endl;
+    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "\n             Facultad de Ingenieria                 " << endl;
+
+    cout << "\n             Maestria en Ingenieria                 " << endl;
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "\nFecha: " << this->actas[ indexActa ].getFecha() <<"  "<< endl;
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "\nActa: " << this->actas[ indexActa].getNumero() << "                       "<< endl;
+
+    cout << "\nTrabajo de grado denominado: "<< this->actas[ indexActa ].getNombreTrabajo() << endl; 
+
+    cout << "\nAutor: " << this->actas[ indexActa ].getAutor() << endl;
+
+    cout << "\nPeriodo: " << this->actas[ indexActa ].getPeriodo() << endl;
+
+    cout << "\nDirector: " << this->actas[ indexActa ].getDirector().getNombre() << endl;
+
+    cout << "\nCo-Director: " << this->actas[ indexActa ].getCoDirector().getNombre() << endl;
+
+    if(this->actas[ indexActa ].getModalidad() == 1){
+        modalidadImprimir = "Investigacion";
+    }
+    
+    else{
+        modalidadImprimir = "Industria";
+    }
+
+    cout << "\nEnfasis: " << modalidadImprimir << endl;
+
+    cout << "\nJurado 1: " << this->actas[ indexActa ].getJurado1().getNombre() << endl;
+
+    cout << "\nJurado 2: " << this->actas[ indexActa ].getJurado2().getNombre() << endl;
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "\n                Criterios de Evaluacion             " << endl;
+
+    for(int i = 0; i < this->actas[ indexActa ].criteriosEvaluacion.size(); i++){
+        cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getIdCriterio() << ". " << this->actas[ indexActa ].criteriosEvaluacion[i].getTitulo() << endl;
+        cout << "\nCalificacion Parcial Jurado #1: " << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionJurado1() << endl;
+        cout << "\nCalificacion Parcial Jurado #2: " << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionJurado2() << endl;
+        cout << "\nPonderacion: " << this->actas[ indexActa ].criteriosEvaluacion[i].getPorcentajePonderacion() << "%" << endl;
+        cout << "\nObservaciones Jurado #2: " << this->actas[ indexActa ].criteriosEvaluacion[i].getObservacionJurado1() << endl;
+        cout << "\nObservaciones Jurado #2: " << this->actas[ indexActa ].criteriosEvaluacion[i].getObservacionJurado2() << endl;
+
+    }
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "\nObservaciones Adicionales: " << this->actas[ indexActa ].getObservacionesAdicionales() << endl;
+
+    
+
+    if(this->actas[ indexActa ].estadoCerrada() == 0){
+        estadoCerrada = "Abierta";
+    }
+    
+    else{
+        estadoCerrada = "Cerrada";
+    }
+
+    cout << "\nEstado del Acta: " << estadoCerrada << endl;
 
 }
 
@@ -507,8 +758,7 @@ void App::trabajoDirigidos( int indexPersona ){
 
 }
 
-// Aqui queda el metodo de saber de que trabajos ha sido jurado una persona
-
+ 
 void App::trabajoJurado( int indexPersona ){
     int idPersona = this->personas[ indexPersona ].getId();
     int i, counter = 0;
@@ -550,19 +800,6 @@ void App::verJuradosActasRegistradas( ){
         }
     }
 
-/*
-
-vectorPersonasActa = vectorPersonas
-
-director = vectorPersonasActa[1]
-
-vectorPersonasActa.erase(1)
-
-jurado = vectorPersonasActa[1]
-
-*/
-
-    //Imprime los jurados
     for( i = 0; i < jurados.size(); i++ ){
         cout << jurados[i].getNombre() << endl;
     }
@@ -583,21 +820,37 @@ void App::mostrarTodasActas( ){
     return;
 }
 
+void App::mostrarActasAC( bool cerrada ){
+
+    int i;
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "\n        Actas Disponibles       " << endl;
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    for( i = 0; i < this->actas.size(); i++ ){
+
+        if( this->actas[i].estadoCerrada() == cerrada ){
+
+            cout << "\n[" <<  (i + 1) << "] | " << this->actas[i].getNumero() << " | " << this->actas[i].getFecha() << " | " << this->actas[i].getAutor() << endl;
+
+        }else if( this->actas[i].estadoCerrada() == !cerrada ){
+
+            cout << "\n[" <<  (i + 1) << "]" << this->actas[i].getNumero() << " | " << this->actas[i].getFecha() << " | " << this->actas[i].getAutor() << endl;
+
+        }
+
+    }
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+
+}
+
 //Muestra actas todas las abiertas o todas las actas cerradas
 //bool cerrada: cuando True muestra las cerradas, cuando False muestra las Abiertas
-void App::mostrarActasAC( bool cerrada ){
-    int i;
-    cout << "====Todas las actas====" << endl;
-    for( i = 0; i < this->actas.size(); i++ ){
-        if( this->actas[i].estadoCerrada() == cerrada ){
-            cout << this->actas[i].getNumero() << "-" << this->actas[i].getFecha() << "-" << this->actas[i].getAutor() << "-" << this->actas[i].getNota() << "-" << this->actas[i].estadoCerrada() << endl;
-        }else if( this->actas[i].estadoCerrada() == !cerrada ){
-            cout << this->actas[i].getNumero() << "-" << this->actas[i].getFecha() << "-" << this->actas[i].getAutor() << "-" << this->actas[i].getNota() << "-" << this->actas[i].estadoCerrada() << endl;
-        }
-    }
-    cout << "=======================" << endl;
-    return;
-}
+
 
 bool App::borrarActa( int indexActas ){
 

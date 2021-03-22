@@ -63,6 +63,13 @@ float criterioEvaluacion::getCalificacionCriterio(){
 
 }
 
+float criterioEvaluacion::getCalificacionJurado1(){
+    return this->calificacionJurado1;
+}
+
+float criterioEvaluacion::getCalificacionJurado2(){
+    return this->calificacionJurado2;
+}
 string criterioEvaluacion::getIdCriterio(){
     return this->idCriterio;
 }
@@ -75,6 +82,7 @@ string criterioEvaluacion::getObservacionJurado1(){
 string criterioEvaluacion::getObservacionJurado2(){
     return this->observacionJurado2;
     }
+
 float criterioEvaluacion::getPorcentajePonderacion(){
     return porcentajePonderacion;
 }

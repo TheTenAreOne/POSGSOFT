@@ -47,21 +47,18 @@ class App{
         void crearActa( );
         void cerrarActa( );
         void mostrarActasPorModalidad( int modalidad );
-        void imprimirActa( int indexActa );
+        void imprimirActa(int indexActa);
         void agregarPersona( );
         void mostrarPersonas( );
         string generarNumeroActa( string periodo );
         int verificarPersona( int idPersona, int idActa );
-        void agregarObservacionJurado1( int indexActa, int nCriterio, string observacion);
-        void agregarObservacionJurado2( int indexActa, int nCriterio, string observacion);
-        void borrarObservacionJurado1( int indexActa, int nCriterio );
-        void borrarObservacionJurado2( int indexActa, int nCriterio );
-        void agregarCalificacionJurado1( int indexActa , int nCriterio, float calificacion );
-        void agregarCalificacionJurado2( int indexActa , int nCriterio, float calificacion );
-        void borrarCalificacionJurado1( int indexActa , int nCriterio );
-        void borrarCalificacionJurado2( int indexActa , int nCriterio );
+        void agregarObservacionJurado1();
+        void agregarObservacionJurado2();
+        void agregarCalificacionJurado1();
+        void agregarCalificacionJurado2();
         int identificarRolActa( int idPersona, int indexActa );
         void menu( );
+        void menuModificarActa();
         void trabajoDirigidos( int indexPersona );
         void trabajoJurado( int indexPersona );
         void verJuradosActasRegistradas( );
@@ -72,8 +69,10 @@ class App{
         void calcularNotaFinal( int indexActas );
         void cerrarActa( int indexActa);
         void verJuradosIE( bool IE);//IE : Interno Externo
-        void imprimirATxt( int indexActa );
+        void imprimirATxt(int indexActa);
         void agregarObservacionesAdicionalesActa( int indexActa, string observacion );
+
+
 };
 
 #endif

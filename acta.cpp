@@ -4,7 +4,7 @@
 
 Acta::Acta(){}
 
-Acta::Acta( string nombreTrabajo, string autor, string idAutor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha ){
+Acta::Acta( string nombreTrabajo, string autor, string idAutor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha, string numero, string observacionesAdicionales ){
 
     this->nombreTrabajo = nombreTrabajo;
     this->autor = autor;
@@ -16,18 +16,19 @@ Acta::Acta( string nombreTrabajo, string autor, string idAutor, string periodo, 
     this->jurado1 = jurado1;
     this->jurado2 = jurado2;
     this->fecha = fecha;
+    this->numero = numero;
     this->cerrada = ABIERTA;
     this->observacionesAdicionales = "";
 
         
     criterioEvaluacion criterio1( "1", "Desarrollo y profundidad en el tratamiento del tema", "", "", 0.0, 0.0, 20, 0.0);
-    criterioEvaluacion criterio2( "2", "Desafío académico y científico del tema", "", "", 0.0, 0.0, 15, 0.0);
+    criterioEvaluacion criterio2( "2", "Desafio academico y cientifico del tema", "", "", 0.0, 0.0, 15, 0.0);
     criterioEvaluacion criterio3( "3", "Cumplimiento de los objetivos propuestos", "", "", 0.0, 0.0, 10, 0.0);
-    criterioEvaluacion criterio4( "4", "Creatividad e innovación de las soluciones y desarrollos propuestos", "", "", 0.0, 0.0, 10, 0.0);
+    criterioEvaluacion criterio4( "4", "Creatividad e innovacion de las soluciones y desarrollos propuestos", "", "", 0.0, 0.0, 10, 0.0);
     criterioEvaluacion criterio5( "5", "Validez de los resultados y conclusiones", "", "", 0.0, 0.0, 20, 0.0);
-    criterioEvaluacion criterio6( "6", "Manejo y procesamiento de la información y bibliografía", "", "", 0.0, 0.0, 10, 0.0);
-    criterioEvaluacion criterio7( "7", "Calidad y presentación del documento escrito", "", "", 0.0, 0.0, 7.5, 0.0);
-    criterioEvaluacion criterio8( "8", " Presentación oral", "", "", 0.0, 0.0, 7.5, 0.0);
+    criterioEvaluacion criterio6( "6", "Manejo y procesamiento de la informacion y bibliografia", "", "", 0.0, 0.0, 10, 0.0);
+    criterioEvaluacion criterio7( "7", "Calidad y presentacion del documento escrito", "", "", 0.0, 0.0, 7.5, 0.0);
+    criterioEvaluacion criterio8( "8", " Presentacion oral", "", "", 0.0, 0.0, 7.5, 0.0);
 
     this->criteriosEvaluacion.push_back(criterio1);
     this->criteriosEvaluacion.push_back(criterio2);
@@ -87,6 +88,10 @@ string Acta::getNumero(){
     return this->numero;
 }
 
+void Acta::setNumero(string numeroIngresar){
+    this->numero = numeroIngresar;
+}
+
 void Acta::setNotaFinal( float nota ){
     this->nota = nota;
 }
@@ -100,5 +105,9 @@ void Acta::setCerrada( bool cerrada ){
 }
 
 void Acta::agregarObservacionAdicional( string observacion ){
-    this->observacionesAdicionales += observacion;
+    this->observacionesAdicionales = observacion;
+}
+
+string Acta::getObservacionesAdicionales(){
+    return this->observacionesAdicionales;
 }
