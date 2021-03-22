@@ -42,11 +42,11 @@ void App::menu( ){
         cout << " 7: Mostrar trabajos de tipo aplicado" << endl;
         cout << " 8: Mostrar trabajos de tipo investigacion" << endl;
         cout << " 9: Mostrar trabajos de los que ha sido jurado una persona" << endl;
-        cout << "10: Mostrar trabajos que ha dirigido una persona" << endl;
-        cout << "11: Mostrar todos los jurados de las actas registradas" << endl;
-        cout << "12: Mostrar jurados por tipo [Externo-Interno]" << endl;
-        cout << "13: Borrar acta" << endl;
-        cout << "14: Salir" << endl;
+        cout << " 10: Mostrar trabajos que ha dirigido una persona" << endl;
+        cout << " 11: Mostrar todos los jurados de las actas registradas" << endl;
+        cout << " 12: Mostrar jurados por tipo [Externo-Interno]" << endl;
+        cout << " 13: Borrar acta" << endl;
+        cout << " 14: Salir" << endl;
         cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
         cout << "\nSeleccione la opcion que desea realizar: ";
         cin >> opcion;
@@ -119,9 +119,9 @@ void App::menu( ){
 
             case 4:
 
-                mostrarActasAC( false );
+                mostrarTodasActas();
 
-                cout << "\nIngrese el numero del acta en la que desea realizar modificaciones: ";
+                cout << "\nIngrese el numero del acta que desea imprimir: ";
 
                 cin >> indexActa;
 
@@ -132,61 +132,117 @@ void App::menu( ){
                 break;
 
             case 5:
+
                 mostrarTodasActas();
-                cout << "\nSeleccione la acta a modificar: " << endl;
+
+                cout << "\nSeleccione el acta a modificar: ";
+
                 cin >> indexActa;
-                cout << "\nIngrese la observacion: " << endl;
+
+                indexActa--;
+
+                cout << "\nIngrese la observacion adicional que desea agregar: ";
+
                 cin >> observacion;
+
                 agregarObservacionesAdicionalesActa( indexActa, observacion );
+
                 break;
 
             case 6:
-                cout << "\nSeleccione la acta a cerrar: " << endl;
+
                 mostrarTodasActas();
+
+                cout << "\nSeleccione el acta a cerrar: ";
+
                 cin >> indexActa;
+
+                indexActa--;
+
                 cerrarActa( indexActa );
+
                 break;
                 
             case 7:
+
                 mostrarActasPorModalidad( INDUSTRIA );
+
                 break;
+
             case 8:
+
                 mostrarActasPorModalidad( INVESTIGACION );
+
                 break;
+
             case 9:
+
                 mostrarPersonas();
+
                 cout << "Seleccione la persona a buscar: ";
+
                 cin >> indexPersona;
+
                 trabajoJurado( indexPersona );
+
                 break;
+
             case 10:
+
                 mostrarPersonas();
+
                 cout << "Seleccione la persona a buscar: ";
+
                 cin >> indexPersona;
+
                 trabajoDirigidos( indexPersona );
+
                 break;
+
             case 11:
+
                 verJuradosActasRegistradas();
+
                 break;
+
             case 12:
+
                 cout << "[1]Externo [2]Externo";
+
                 cin >> opcionJuradoIE;
+
                 if( opcionJuradoIE == 1){
+
                     verJuradosIE( EXTERNO );
+
                 }else{
+
                     verJuradosIE( INTERNO );
+
                 }
+
                 break;
+
             case 13:
+
                 mostrarTodasActas();
+
                 cout << "Seleccione el acta a borrar" << endl;
+
                 cin >> indexActa;
+
                 if( borrarActa( indexActa ) == false ){
+
                     cout << "Ha seleccionado un acta cerrada..." << endl;
+
                 }else{
+
                     cout << "Acta borrada exitosamente..." << endl;
+
                 }
+
                 break;
+
             default:
 
                 break;
@@ -702,20 +758,37 @@ int App::identificarRolActa( int idPersona, int indexActa ){
 }
 
 void App::mostrarActasPorModalidad( int modalidad ){
+
     int i;
-    cout << "Modalidad : ";
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "\n        Actas Disponibles       " << endl;
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "Modalidad: ";
+
     if( modalidad == INVESTIGACION ){
+
         cout << "Investigacion" << endl;
+
     }else{
+
         cout << "Industria" << endl;
+
     }
 
     for(i = 0; i < this->actas.size(); i++ ){
+
         if( this->actas[i].getModalidad() == modalidad ){
+
             imprimirActa( i );
+
         }
+        
     }
-    return;
+
 }
 
 void App::imprimirActa( int indexActa ){
@@ -799,31 +872,45 @@ void App::imprimirActa( int indexActa ){
 }
 
 void App::trabajoDirigidos( int indexPersona ){
+
     int idPersona = this->personas[ indexPersona ].getId();
+
     int i, counter = 0;
+
     for( i = 0; i < this->actas.size(); i++ ){
+
         if( this->actas[i].getDirector().getId() == idPersona ){
+
             counter++;
+
             cout << this->actas[i].getNombreTrabajo() << " por " << this->actas[i].getAutor() << endl;
         }
+
         cout << "Trabajos dirigidos: " << counter << endl;
     }
-    return;
 
 }
 
  
 void App::trabajoJurado( int indexPersona ){
+
     int idPersona = this->personas[ indexPersona ].getId();
+
     int i, counter = 0;
+
     for( i = 0; i < this->actas.size(); i++ ){
+
         if( ( this->actas[i].getJurado1().getId() == idPersona ) || ( this->actas[i].getJurado2().getId() == idPersona ) ){
+
             counter++;
+
             cout << this->actas[i].getNombreTrabajo() << " por " << this->actas[i].getAutor() << endl;
+
         }
+
         cout << "Trabajos de los que ha sido jurado: " << counter << endl;
+
     }
-    return;
 
 }
 
@@ -865,13 +952,37 @@ void App::verJuradosActasRegistradas( ){
 
 //Muestra todas las actas en el vector actas
 void App::mostrarTodasActas( ){
+
+    string estadoCerradaString;
+
     int i;
-    cout << "====Todas las actas====" << endl;
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "\n        Actas Disponibles       " << endl;
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+
     for( i = 0; i < this->actas.size(); i++ ){
-        cout << this->actas[i].getNumero() << "-" << this->actas[i].getFecha() << "-" << this->actas[i].getAutor() << "-" << this->actas[i].getNota() << "-" << this->actas[i].estadoCerrada() << endl;
+
+        if(this->actas[i].getCerrada() == false){
+
+            estadoCerradaString = "Abierta";
+
+        }
+
+        else{
+
+            estadoCerradaString = "Cerrada";
+
+        }
+
+        cout << "\n[" <<  (i + 1) << "] | " << this->actas[i].getNumero() << " | " << this->actas[i].getFecha() << " | " << this->actas[i].getAutor() << " | " << this->actas[i].getNotaFinal() << estadoCerradaString << endl;
+
     }
-    cout << "=======================" << endl;
-    return;
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+
 }
 
 void App::mostrarActasAC( bool cerrada ){
@@ -943,6 +1054,8 @@ void App::calcularNotaFinal( int indexActas ){
 
 //Cerrar acta
 void App::cerrarActa( int indexActa ){
+    calcularNotaFinal( indexActa );
+    cout << "\nActa #" << indexActa+1 << " cerrada con exito."
     this->actas[ indexActa ].setCerrada( CERRADA );
 }
 

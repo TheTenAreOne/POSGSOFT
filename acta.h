@@ -52,11 +52,11 @@ class Acta{
         string getAutor();
         string getNombreTrabajo();
         string getPeriodo();
-        int getNota();
         void setNotaFinal( float nota );
         float getNotaFinal();
         void setAprobada( bool aprobada );
         void setCerrada( bool cerrada );
+        bool getCerrada();
         void agregarObservacionAdicional( string observacion );
         string getObservacionesAdicionales();
         
