@@ -25,7 +25,8 @@ App::App(){
 
 void App::menu( ){
 
-    int opcion;
+    int opcion, indexActa, indexPersona, opcionJuradoIE;
+    string observacion;
 
     do{
 
@@ -38,7 +39,14 @@ void App::menu( ){
         cout << " 4: Imprimir Acta" << endl;
         cout << " 5: Agregar observaciones adicionales" << endl;
         cout << " 6: Cerrar acta" << endl;
-        cout << " 7: Salir" << endl;
+        cout << " 7: Mostrar trabajos de tipo aplicado" << endl;
+        cout << " 8: Mostrar trabajos de tipo investigacion" << endl;
+        cout << " 9: Mostrar trabajos de los que ha sido jurado una persona" << endl;
+        cout << "10: Mostrar trabajos que ha dirigido una persona" << endl;
+        cout << "11: Mostrar todos los jurados de las actas registradas" << endl;
+        cout << "12: Mostrar jurados por tipo [Externo-Interno]" << endl;
+        cout << "13: Borrar acta" << endl;
+        cout << "14: Salir" << endl;
         cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
         cout << "\nSeleccione la opcion que desea realizar: ";
         cin >> opcion;
@@ -111,8 +119,6 @@ void App::menu( ){
 
             case 4:
 
-                int indexActa;
-
                 mostrarActasAC( false );
 
                 cout << "\nIngrese el numero del acta en la que desea realizar modificaciones: ";
@@ -126,17 +132,61 @@ void App::menu( ){
                 break;
 
             case 5:
-
+                mostrarTodasActas();
+                cout << "\nSeleccione la acta a modificar: " << endl;
+                cin >> indexActa;
+                cout << "\nIngrese la observacion: " << endl;
+                cin >> observacion;
+                agregarObservacionesAdicionalesActa( indexActa, observacion );
                 break;
 
             case 6:
-
+                cout << "\nSeleccione la acta a cerrar: " << endl;
+                mostrarTodasActas();
+                cin >> indexActa;
+                cerrarActa( indexActa );
                 break;
                 
             case 7:
-
+                mostrarActasPorModalidad( INDUSTRIA );
                 break;
-
+            case 8:
+                mostrarActasPorModalidad( INVESTIGACION );
+                break;
+            case 9:
+                mostrarPersonas();
+                cout << "Seleccione la persona a buscar: ";
+                cin >> indexPersona;
+                trabajoJurado( indexPersona );
+                break;
+            case 10:
+                mostrarPersonas();
+                cout << "Seleccione la persona a buscar: ";
+                cin >> indexPersona;
+                trabajoDirigidos( indexPersona );
+                break;
+            case 11:
+                verJuradosActasRegistradas();
+                break;
+            case 12:
+                cout << "[1]Externo [2]Externo";
+                cin >> opcionJuradoIE;
+                if( opcionJuradoIE == 1){
+                    verJuradosIE( EXTERNO );
+                }else{
+                    verJuradosIE( INTERNO );
+                }
+                break;
+            case 13:
+                mostrarTodasActas();
+                cout << "Seleccione el acta a borrar" << endl;
+                cin >> indexActa;
+                if( borrarActa( indexActa ) == false ){
+                    cout << "Ha seleccionado un acta cerrada..." << endl;
+                }else{
+                    cout << "Acta borrada exitosamente..." << endl;
+                }
+                break;
             default:
 
                 break;
