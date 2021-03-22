@@ -853,6 +853,8 @@ void App::imprimirActa( int indexActa ){
 
     cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
 
+    calcularNotaFinal( indexActa );
+
     cout << "\nComo resultado de estas calificaciones parciales y sus podenceraciones, la calificacion del Trabajo de Grado es: " << this->actas[ indexActa ].getNotaFinal() << endl;
 
     cout << "\nObservaciones Adicionales: " << this->actas[ indexActa ].getObservacionesAdicionales() << endl;
@@ -1055,7 +1057,7 @@ void App::calcularNotaFinal( int indexActas ){
 //Cerrar acta
 void App::cerrarActa( int indexActa ){
     calcularNotaFinal( indexActa );
-    cout << "\nActa #" << indexActa+1 << " cerrada con exito."
+    cout << "\nActa #" << indexActa+1 << " cerrada con exito.";
     this->actas[ indexActa ].setCerrada( CERRADA );
 }
 
