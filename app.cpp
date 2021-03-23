@@ -25,7 +25,7 @@ App::App(){
 //Menu - desde aqui se llaman todas las demas funciones
 void App::menu( ){
 
-    int opcion, indexActa, indexPersona, opcionJuradoIE;
+    int opcion, indexActa, indexPersona, opcionJuradoIE, opcTipoActa;
     string observacion;
 
     do{
@@ -47,7 +47,9 @@ void App::menu( ){
         cout << " 12: Mostrar jurados por tipo [Externo] [Interno]" << endl;
         cout << " 13: Mostrar criterios de evaluacion" << endl;
         cout << " 14: Borrar acta" << endl;
-        cout << " 15: Salir" << endl;
+        cout << " 15: Mostrar actas [Abierto] [Cerrado]" << endl;
+        cout << " 16: Guardar acta en txt" << endl;
+        cout << " 17: Salir" << endl;
         cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
         cout << "\nSeleccione la opcion que desea realizar: ";
         cin >> opcion;
@@ -258,14 +260,28 @@ void App::menu( ){
                 }
 
                 break;
-
+            case 15:
+                cout << "[1]Abiertas [2]Cerradas";
+                cin >> opcTipoActa;
+                if( opcTipoActa == 1 ){
+                    mostrarActasAC( ABIERTA );
+                }else{
+                    mostrarActasAC( CERRADA );
+                }
+                break;
+            case 16:
+                mostrarTodasActas();
+                cout << "Acta: ";
+                cin >> indexActa;
+                imprimirATxt( indexActa );
+                break;
             default:
 
                 break;
 
         }
 
-    }while( opcion != 15 );
+    }while( opcion != 17 );
 
 }
 
@@ -930,12 +946,8 @@ void App::trabajoDirigidos( int indexPersona ){
 
 }
 
-<<<<<<< HEAD
- 
-//muestra los trabajos de losq ue ha sido jurado una persona
-//indexPersona : es el index en el vector de personas de la persona
-=======
-
+//muestra los criterios de evaluacion del acta
+//indexActa : es el index del acta en el vector actas
 void App::mostrarCriteriosEvaluacion( int indexActa){
 
     cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
@@ -956,7 +968,6 @@ void App::mostrarCriteriosEvaluacion( int indexActa){
     cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
 }
 
->>>>>>> 8522700b7408d21a7b285ba412e99d47da23385b
 void App::trabajoJurado( int indexPersona ){
 
     int idPersona = this->personas[ indexPersona ].getId();
