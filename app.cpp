@@ -44,9 +44,10 @@ void App::menu( ){
         cout << " 9: Mostrar trabajos de los que ha sido jurado una persona" << endl;
         cout << " 10: Mostrar trabajos que ha dirigido una persona" << endl;
         cout << " 11: Mostrar todos los jurados de las actas registradas" << endl;
-        cout << " 12: Mostrar jurados por tipo [Externo-Interno]" << endl;
-        cout << " 13: Borrar acta" << endl;
-        cout << " 14: Salir" << endl;
+        cout << " 12: Mostrar jurados por tipo [Externo] [Interno]" << endl;
+        cout << " 13: Mostrar criterios de evaluacion" << endl;
+        cout << " 14: Borrar acta" << endl;
+        cout << " 15: Salir" << endl;
         cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
         cout << "\nSeleccione la opcion que desea realizar: ";
         cin >> opcion;
@@ -179,9 +180,11 @@ void App::menu( ){
 
                 mostrarPersonas();
 
-                cout << "Seleccione la persona a buscar: ";
+                cout << "\n\nSeleccione la persona a buscar: ";
 
                 cin >> indexPersona;
+
+                indexPersona--;
 
                 trabajoJurado( indexPersona );
 
@@ -191,7 +194,7 @@ void App::menu( ){
 
                 mostrarPersonas();
 
-                cout << "Seleccione la persona a buscar: ";
+                cout << "\n\nSeleccione la persona a buscar: ";
 
                 cin >> indexPersona;
 
@@ -227,17 +230,30 @@ void App::menu( ){
 
                 mostrarTodasActas();
 
+                cout << "\nSeleccione el acta de la cual quiere conocer sus criterios de evaluacion: ";
+
+                cin >> indexActa;
+
+                indexActa--;
+
+                mostrarCriteriosEvaluacion( indexActa);
+
+
+            case 14:
+
+                mostrarTodasActas();
+
                 cout << "Seleccione el acta a borrar" << endl;
 
                 cin >> indexActa;
 
                 if( borrarActa( indexActa ) == false ){
 
-                    cout << "Ha seleccionado un acta cerrada..." << endl;
+                    cout << "\nHa seleccionado un acta cerrada..." << endl;
 
                 }else{
 
-                    cout << "Acta borrada exitosamente..." << endl;
+                    cout << "\nActa borrada exitosamente..." << endl;
 
                 }
 
@@ -249,7 +265,7 @@ void App::menu( ){
 
         }
 
-    }while( opcion != 7 );
+    }while( opcion != 15 );
 
 }
 
@@ -759,23 +775,25 @@ int App::identificarRolActa( int idPersona, int indexActa ){
 
 void App::mostrarActasPorModalidad( int modalidad ){
 
-    int i;
-
-    cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
-
-    cout << "\n        Actas Disponibles       " << endl;
-
-    cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
+    int i, contador = 0;
 
     cout << "Modalidad: ";
 
     if( modalidad == INVESTIGACION ){
 
-        cout << "Investigacion" << endl;
+        cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+
+        cout << "\n          Actas Disponibles Investigacion           " << endl;
+
+        cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
 
     }else{
 
-        cout << "Industria" << endl;
+        cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+
+        cout << "\n             Actas Disponibles Industria            " << endl;
+
+        cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
 
     }
 
@@ -784,9 +802,14 @@ void App::mostrarActasPorModalidad( int modalidad ){
         if( this->actas[i].getModalidad() == modalidad ){
 
             imprimirActa( i );
+            contador++;
 
         }
         
+    }
+
+    if(contador == 0){
+        cout << "\nNo hay actas de ese tipo" << endl;
     }
 
 }
@@ -888,12 +911,32 @@ void App::trabajoDirigidos( int indexPersona ){
             cout << this->actas[i].getNombreTrabajo() << " por " << this->actas[i].getAutor() << endl;
         }
 
-        cout << "Trabajos dirigidos: " << counter << endl;
+        cout << "\nTrabajos dirigidos: " << counter << endl;
     }
 
 }
 
- 
+
+void App::mostrarCriteriosEvaluacion( int indexActa){
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+
+    cout << "\n                Criterios de Evaluacion             " << endl;
+
+    for(int i = 0; i < this->actas[ indexActa ].criteriosEvaluacion.size(); i++){
+        cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+        cout << "\n" << this->actas[ indexActa ].criteriosEvaluacion[i].getIdCriterio() << ". " << this->actas[ indexActa ].criteriosEvaluacion[i].getTitulo() << endl;
+        cout << "\nCalificacion Parcial Jurado #1: " << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionJurado1() << endl;
+        cout << "\nCalificacion Parcial Jurado #2: " << this->actas[ indexActa ].criteriosEvaluacion[i].getCalificacionJurado2() << endl;
+        cout << "\nPonderacion: " << this->actas[ indexActa ].criteriosEvaluacion[i].getPorcentajePonderacion() << "%" << endl;
+        cout << "\nObservaciones Jurado #1: " << this->actas[ indexActa ].criteriosEvaluacion[i].getObservacionJurado1() << endl;
+        cout << "\nObservaciones Jurado #2: " << this->actas[ indexActa ].criteriosEvaluacion[i].getObservacionJurado2() << endl;
+
+    }
+
+    cout << "\n<>===<>===<>===<>===<>===<>===<>===<>===<>===<>===<>" << endl;
+}
+
 void App::trabajoJurado( int indexPersona ){
 
     int idPersona = this->personas[ indexPersona ].getId();
@@ -910,25 +953,38 @@ void App::trabajoJurado( int indexPersona ){
 
         }
 
-        cout << "Trabajos de los que ha sido jurado: " << counter << endl;
+        cout << "\nTrabajos de los que ha sido jurado: " << counter << endl;
 
     }
 
 }
 
 void App::verJuradosActasRegistradas( ){
+
     int i, j;
+
     vector<Persona> juradosRepetidos;
+
     vector<Persona> jurados;
+
     bool agregado;
+
     //Agrega las personas que han sido jurados
+
     for( i = 0; i < this->personas.size(); i++ ){
+
         for( j = 0; j < this->actas.size(); j++ ){
+
             if( this->personas[i].getId() == this->actas[j].getJurado1().getId() || this->personas[i].getId() == this->actas[j].getJurado2().getId() ){
+
                 juradosRepetidos.push_back( this->personas[i] );
+
             }
+
         }
+
     }
+
 
     //Crea el vector con jurados no repetidos
     for( i = 0; i < juradosRepetidos.size(); i++ ){
@@ -947,7 +1003,6 @@ void App::verJuradosActasRegistradas( ){
         cout << jurados[i].getNombre() << endl;
     }
     
-    return;
 }
 
 
