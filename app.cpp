@@ -47,9 +47,10 @@ void App::menu( ){
         cout << " 12: Mostrar jurados por tipo [Externo] [Interno]" << endl;
         cout << " 13: Mostrar criterios de evaluacion" << endl;
         cout << " 14: Borrar acta" << endl;
-        cout << " 15: Mostrar actas [Abierto] [Cerrado]" << endl;
-        cout << " 16: Guardar acta en txt" << endl;
-        cout << " 17: Salir" << endl;
+        cout << " 15: Mostrar todas las actas" << endl;
+        cout << " 16: Mostrar actas [Abierto] [Cerrado]" << endl;
+        cout << " 17: Guardar acta en txt" << endl;
+        cout << " 18: Salir" << endl;
         cout << "\n<>===<>===<>===<>===<>===<>===<>" << endl;
         cout << "\nSeleccione la opcion que desea realizar: ";
         cin >> opcion;
@@ -275,7 +276,13 @@ void App::menu( ){
                 }
 
                 break;
+            
             case 15:
+
+                mostrarTodasActas();
+                break;
+
+            case 16:
                 cout << "[1]Abiertas [2]Cerradas";
                 cin >> opcTipoActa;
                 if( opcTipoActa == 1 ){
@@ -284,7 +291,7 @@ void App::menu( ){
                     mostrarActasAC( CERRADA );
                 }
                 break;
-            case 16:
+            case 17:
                 mostrarTodasActas();
                 cout << "Acta: ";
                 cin >> indexActa;
@@ -297,7 +304,7 @@ void App::menu( ){
 
         }
 
-    }while( opcion != 17 );
+    }while( opcion != 18 );
 
 }
 
