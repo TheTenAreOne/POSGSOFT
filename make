@@ -10,7 +10,7 @@ criterioEvaluacion: criterioEvaluacion.cpp criterioEvaluacion.h
 		g++ -c criterioEvaluacion.cpp
 
 compilar: acta app persona criterioEvaluacion main
-		g++ -o app app.o acta.o criterioEvaluacion.o persona.o main.o
+		g++ -o posgsoft app.o acta.o criterioEvaluacion.o persona.o main.o
 
 main: main.cpp app.h acta.h persona.h criterioEvaluacion.h
 	  g++ -c main.cpp

@@ -136,6 +136,11 @@ void App::menu( ){
 
             case 5:
 
+                if( actas.size() == 0 ){
+                    cout << "No hay actas creadas" << endl;
+                    break;
+                }
+
                 mostrarTodasActas();
 
                 cout << "\nSeleccione el acta a modificar: ";
@@ -144,9 +149,15 @@ void App::menu( ){
 
                 indexActa--;
 
-                cout << "\nIngrese la observacion adicional que desea agregar: ";
+                if( indexActa < 0 || indexActa > actas.size() ){
+                    cout << "\nIndex invalido" << endl;
+                    break;
+                }
 
-                cin >> observacion;
+                cout << "\nIngrese la observacion adicional que desea agregar: ";
+                cin.clear();
+                fflush(stdin);
+                std::getline(cin, observacion);
 
                 agregarObservacionesAdicionalesActa( indexActa, observacion );
 
@@ -200,6 +211,8 @@ void App::menu( ){
 
                 cin >> indexPersona;
 
+                indexPersona--;
+
                 trabajoDirigidos( indexPersona );
 
                 break;
@@ -249,6 +262,8 @@ void App::menu( ){
 
                 cin >> indexActa;
 
+                indexActa--;
+
                 if( borrarActa( indexActa ) == false ){
 
                     cout << "\nHa seleccionado un acta cerrada..." << endl;
@@ -273,6 +288,7 @@ void App::menu( ){
                 mostrarTodasActas();
                 cout << "Acta: ";
                 cin >> indexActa;
+                indexActa--;
                 imprimirATxt( indexActa );
                 break;
             default:
