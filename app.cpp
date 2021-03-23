@@ -283,7 +283,7 @@ void App::menu( ){
                 break;
 
             case 16:
-                cout << "[1]Abiertas [2]Cerradas";
+                cout << "\nIngrese el tipo de actas que desea buscar [1] Abiertas [2]Cerradas: ";
                 cin >> opcTipoActa;
                 if( opcTipoActa == 1 ){
                     mostrarActasAC( ABIERTA );
@@ -1089,7 +1089,7 @@ void App::mostrarTodasActas( ){
 
         }
 
-        cout << "\n[" <<  (i + 1) << "] | " << this->actas[i].getNumero() << " | " << this->actas[i].getFecha() << " | " << this->actas[i].getAutor() << " | " << this->actas[i].getNotaFinal() << estadoCerradaString << endl;
+        cout << "\n[" <<  (i + 1) << "] | " << this->actas[i].getNumero() << " | " << this->actas[i].getFecha() << " | " << this->actas[i].getAutor() << " | " << this->actas[i].getNotaFinal() << " | " << estadoCerradaString << endl;
 
     }
 
