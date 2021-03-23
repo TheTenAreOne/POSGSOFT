@@ -22,7 +22,7 @@ App::App(){
 }
 
 
-
+//Menu - desde aqui se llaman todas las demas funciones
 void App::menu( ){
 
     int opcion, indexActa, indexPersona, opcionJuradoIE;
@@ -254,7 +254,7 @@ void App::menu( ){
 }
 
 
-
+//agrega una persona al vector de personas
 void App::agregarPersona(){
 
     int continuar = 1;
@@ -317,7 +317,6 @@ void App::agregarPersona(){
 }
 
 // Genera la fecha del sistema en el formato "mes de dia de año", por ejemplo "17 de febrero de 2003".
-
 string App::generarFecha(){
 
     string fecha;
@@ -386,9 +385,8 @@ string App::generarFecha(){
 
 }
 
-// FUNCION ON HOLD
-
-
+//genera un numero de acta concatenando idActas con periodo
+//periodo : periodo en que se creo el acta
 string App::generarNumeroActa( string periodo){
     string numero;
     numero = std::to_string(this->idActas++) + "-" + periodo;
@@ -396,6 +394,7 @@ string App::generarNumeroActa( string periodo){
 }
 
 
+//muestra las personas del vector personas
 void App::mostrarPersonas(){
 
     int i;
@@ -421,7 +420,6 @@ void App::mostrarPersonas(){
 }
 
 //Crear un acta
-
 void App::crearActa(){
 
     if(personas.size() == 1){
@@ -557,6 +555,9 @@ void App::crearActa(){
 
 }
 
+//verifica el rol que cumple una persona en determinada acta
+//idPersona : es el id de la persona a buscar
+//idActa : es el id del acta a buscar
 int App::verificarPersona( int idPersona, int idActa ){
     int i;
     for( i = 0; i < this->actas.size(); i++ ){
@@ -571,6 +572,7 @@ int App::verificarPersona( int idPersona, int idActa ){
     return -1;
 }
 
+//agrega una observacion a un acta como jurado 1
 void App::agregarObservacionJurado1(){
 
     int indexActa, indexCriterioEvaluacion;
@@ -615,6 +617,7 @@ void App::agregarObservacionJurado1(){
 
 }
 
+//agrega una observacion a un acta como jurado 2
 void App::agregarObservacionJurado2(){
 
     int indexActa, indexCriterioEvaluacion;
@@ -659,6 +662,7 @@ void App::agregarObservacionJurado2(){
 
 }
 
+//agrega la calificacion a un acta como jurado 1
 void App::agregarCalificacionJurado1(){
 
     int indexActa, indexCriterioEvaluacion;
@@ -701,6 +705,7 @@ void App::agregarCalificacionJurado1(){
 
 }
 
+//agrega la calificacion a un acta como jurado 2
 void App::agregarCalificacionJurado2(){
     int indexActa, indexCriterioEvaluacion;
     
@@ -742,6 +747,9 @@ void App::agregarCalificacionJurado2(){
 
 }
 
+//identifica el rol que cumple una persona en determinada acta
+//idPersona : es el id de la persona a buscar
+//indexActa : es el index en el vector de actas del acta
 int App::identificarRolActa( int idPersona, int indexActa ){
 
     if( this->actas[ indexActa ].getJurado1().getId() == idPersona ){
@@ -757,6 +765,8 @@ int App::identificarRolActa( int idPersona, int indexActa ){
     return -1;
 }
 
+//imprime las actas dependiendo de la modalidad seleccionada
+//modalidad : es un entero que indica la modalidad a mostrar
 void App::mostrarActasPorModalidad( int modalidad ){
 
     int i;
@@ -791,6 +801,8 @@ void App::mostrarActasPorModalidad( int modalidad ){
 
 }
 
+//Imprime el acta seleccionada
+//indexActa : es el index en el vector actas de acta
 void App::imprimirActa( int indexActa ){
 
     string modalidadImprimir;
@@ -873,6 +885,8 @@ void App::imprimirActa( int indexActa ){
 
 }
 
+//muestra los trabajos que ha dirigido una persona
+//indexPersona es el index en el vector personas de la persona
 void App::trabajoDirigidos( int indexPersona ){
 
     int idPersona = this->personas[ indexPersona ].getId();
@@ -894,6 +908,8 @@ void App::trabajoDirigidos( int indexPersona ){
 }
 
  
+//muestra los trabajos de losq ue ha sido jurado una persona
+//indexPersona : es el index en el vector de personas de la persona
 void App::trabajoJurado( int indexPersona ){
 
     int idPersona = this->personas[ indexPersona ].getId();
@@ -916,6 +932,7 @@ void App::trabajoJurado( int indexPersona ){
 
 }
 
+//Muestra todos los jurados de las actas registradas
 void App::verJuradosActasRegistradas( ){
     int i, j;
     vector<Persona> juradosRepetidos;
@@ -987,6 +1004,8 @@ void App::mostrarTodasActas( ){
 
 }
 
+//muestra las actas abiertas o cerradas
+//cerrada : indica el tipo de acta a buscar, abierta o cerrada
 void App::mostrarActasAC( bool cerrada ){
 
     int i;
@@ -1015,10 +1034,8 @@ void App::mostrarActasAC( bool cerrada ){
 
 }
 
-//Muestra actas todas las abiertas o todas las actas cerradas
-//bool cerrada: cuando True muestra las cerradas, cuando False muestra las Abiertas
-
-
+//borra un acta
+//indexActa : es el index en el vector actas del acta a borrar
 bool App::borrarActa( int indexActas ){
 
     if( this->actas[indexActas].estadoCerrada() == ABIERTA ){
@@ -1028,6 +1045,8 @@ bool App::borrarActa( int indexActas ){
     return false;
 }
 
+//calcula la nota final de un acta
+//indexActas : es el index del acta a borrar en el vector actas
 void App::calcularNotaFinal( int indexActas ){
 
     int i;
@@ -1055,6 +1074,7 @@ void App::calcularNotaFinal( int indexActas ){
 }
 
 //Cerrar acta
+//indexActa : es el index del acta a cerrar en el vector actas
 void App::cerrarActa( int indexActa ){
     calcularNotaFinal( indexActa );
     cout << "\nActa #" << indexActa+1 << " cerrada con exito.";
@@ -1100,11 +1120,15 @@ void App::verJuradosIE( bool IE ){
 }
 
 //Agregar observaciones adicional
+//indexActa : es el index del acta en el vector actas
+//observacion : es la observacion a adicionar en el acta
 void App::agregarObservacionesAdicionalesActa( int indexActa, string observacion ){
     this->actas[indexActa].agregarObservacionAdicional( observacion );
     return;
 }
 
+//Imprime a un txt el acta seleccionada
+//indexActa : es el index del acta en el vector actas
 void App::imprimirATxt( int indexActa ){
     string fileName;
     int i;

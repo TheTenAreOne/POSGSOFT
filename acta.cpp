@@ -4,6 +4,8 @@
 
 Acta::Acta(){}
 
+//constructor de Acta
+//Hay 8 criterios de evaluacion que se crean por defecto
 Acta::Acta( string nombreTrabajo, string autor, string idAutor, string periodo, Persona director, Persona coDirector, string enfasis, int modalidad, Persona jurado1, Persona jurado2, string fecha, string numero, string observacionesAdicionales, float nota ){
 
     this->nombreTrabajo = nombreTrabajo;
@@ -41,78 +43,97 @@ Acta::Acta( string nombreTrabajo, string autor, string idAutor, string periodo, 
     this->criteriosEvaluacion.push_back(criterio8);
 }
 
+//getter de jurado1
 Persona Acta::getJurado1( ){
     return this->jurado1;
 }
 
+//getter de jurado2
 Persona Acta::getJurado2( ){
     return this->jurado2;
 }
 
+//getter de director
 Persona Acta::getDirector( ){
     return this->director;
 }
 
+//getter de coDirector
 Persona Acta::getCoDirector( ){
     return this->coDirector;
 }
 
+//getter de cerrada (estado del acta)
 bool Acta::estadoCerrada( ){
     return this->cerrada;
 }
 
+//getter de modalidad
 int Acta::getModalidad( ){
     return this->modalidad;
 }
 
+//getter de autor
 string Acta::getAutor(){
     return this->autor;
 }
 
+//getter de notaFinal
 float Acta::getNotaFinal(){
     return this->nota;
 }
 
+//getter de periodo
 string Acta::getPeriodo(){
     return this->periodo;
 }
 
+//getter del nombreTrabajo
 string Acta::getNombreTrabajo(){
     return this->nombreTrabajo;
 }
 
+//getter de fecha
 string Acta::getFecha(){
     return this->fecha;
 }
 
+//otro getter de cerrada
 bool Acta::getCerrada(){
     return this->cerrada;
 }
 
+//getter de numero
 string Acta::getNumero(){
     return this->numero;
 }
 
+//setter de numero
 void Acta::setNumero(string numeroIngresar){
     this->numero = numeroIngresar;
 }
 
+//setter de nota
 void Acta::setNotaFinal( float nota ){
     this->nota = nota;
 }
 
+//setter de aprobada
 void Acta::setAprobada( bool aprobada ){
     this->aprobada = aprobada;
 }
 
+//setter de cerrada
 void Acta::setCerrada( bool cerrada ){
     this->cerrada = CERRADA;
 }
 
+//setter de observacionesAdicionales
 void Acta::agregarObservacionAdicional( string observacion ){
     this->observacionesAdicionales = observacion;
 }
 
+//getter de observaciones adicionales
 string Acta::getObservacionesAdicionales(){
     return this->observacionesAdicionales;
 }
